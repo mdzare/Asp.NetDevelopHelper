@@ -638,12 +638,13 @@ namespace ArvinERPFinal.Domain.Resources {{
             return builder.ToString();
         }
 
-        public string GetDeleteOverride(string principal)
+        public string GetDeleteOverride(string principal, bool alreadyHas= false)
         {
             var x = data.Relations.FirstOrDefault(x => x.Table == principal);
             var checker = "";
             if (x == null)
                 return null;
+            var result = !alreadyHas ? $"\t\tprotected override Task BeforeDelete({x.Table} instance)\r\n        {{" : "";
             switch (x.DeleteBahavior)
             {
                 case DeleteBahavior.NoAction:
@@ -651,38 +652,26 @@ namespace ArvinERPFinal.Domain.Resources {{
                         checker = $"IsDeleted_";
                     else
                         checker = $"Any(x => !x.IsDeleted_ {(data.HasYear ? "&& (instance.Year ==0 || x.Year == instance.Year)" : "")})";
-                    return $@"        
-        protected override Task BeforeDelete({x.Table} instance)
-        {{
+                    return alreadyHas + $@"
             if (instance.{data.Table}.{checker})
             {{
                 throw new InvalidOperationException(""این رکورد دارای رکوردهای وابسته در '{data.TableCaption}' می باشد.ابتدا رکوردهای وابسته را حذف کنید"");
             }}
-            return base.BeforeDelete(instance);
-        }}
-";
+            {(alreadyHas?"": "return base.BeforeDelete(instance);\r\n        }\r\n")}";
                     break;
                 case DeleteBahavior.Cascade:
-                    return $@"
-        protected override Task BeforeDelete({data.Table} instance)
-        {{
+                    return alreadyHas + $@"       
             {(x.RelationType == RelationType.One2One ? $"instance.{data.Table}.IsDeleted_= true" : "")}
             {(x.RelationType != RelationType.One2One ? $@"instance.{data.Table}.Where(x=> !x.IsDeleted_ && (instance.Year == 0 || x.Year == instance.Year)).ToList()
                 .ForEach(x=> x.IsDeleted_= true);" : "")}
-            return base.BeforeDelete(instance);
-        }}
-";
+            {(alreadyHas ? "" : "return base.BeforeDelete(instance);\r\n        }\r\n")}";
                     break;
                 case DeleteBahavior.SetNull:
-                    return $@"
-        protected override Task BeforeDelete({data.Table} instance)
-        {{
+                    return alreadyHas + $@"
             {(x.RelationType == RelationType.One2One ? $"instance.{data.Table}.{x.ForeignKey}= null" : "")}
             {(x.RelationType != RelationType.One2One ? $@"instance.{data.Table}.Where(x=> !x.IsDeleted_ && (instance.Year == 0 || x.Year == instance.Year)).ToList()
                 .ForEach(x=> x.{x.ForeignKey} = null);" : "")}
-            return base.BeforeDelete(instance);
-        }}
-";
+            {(alreadyHas ? "" : "return base.BeforeDelete(instance);\r\n        }\r\n")}";
                     break;
                 default:
                     break;
