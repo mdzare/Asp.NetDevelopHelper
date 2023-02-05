@@ -276,7 +276,7 @@ namespace ArvinERPFinal.Domain.Mapping.{data.Schema}
         public {data.Table}MappingProfile()
         {{
             CreateMap<{data.Table}, {data.Table}ViewModel>();
-            CreateMap<{data.Table}Dto, {data.Table}>().ReverseMap();
+            CreateMap<{data.Table}Dto, {data.Table}>().AddTransform<string>(s => string.IsNullOrEmpty(s) ? null : s).ReverseMap();
         }}
     }}
 }}
