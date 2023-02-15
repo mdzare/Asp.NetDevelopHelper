@@ -23,9 +23,9 @@ namespace Asp.NetDevelopHelper.String
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-{(data.Relations.Count > 0 && data.Relations.Any(x => x.Schema != data.Schema) ? string.Join("", data.Relations.Select(x => $"using ArvinERPFinal.Domain.Models.{x.Schema};\n").Distinct()) : "")}
+{(data.Relations.Count > 0 && data.Relations.Any(x => x.Schema != data.Schema) ? string.Join("", data.Relations.Select(x => $"using ArvinERP.Domain.Models.{x.Schema};\n").Distinct()) : "")}
 
-namespace ArvinERPFinal.Domain.Models.{data.Schema}
+namespace ArvinERP.Domain.Models.{data.Schema}
 {{
     public class {data.Table} {(data.Inherited ? $":ObjectModel<{data.KeyType}>" : "")}
     {{"
@@ -35,13 +35,13 @@ namespace ArvinERPFinal.Domain.Models.{data.Schema}
             {
                 builder.Append($@"{(item.Maxlength != null ? $"\n\t\t[MaxLength({item.Maxlength})]" : "")}{(item.Minlength != null ? $"\n\t\t[MinLength({item.Minlength})]" : "")}                       
         public {item.Type}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}");
-                if (data.Relations.Any(x => x.ForeignKey == item.Name && x.RelationType != RelationType.Many2Many))
+                if (data.Relations.Where(x=> !x.IsSoftRelation).Any(x => x.ForeignKey == item.Name && x.RelationType != RelationType.Many2Many))
                 {
                     var rel = data.Relations.FirstOrDefault(x => x.ForeignKey == item.Name);
                     builder.Append($"\n\t\tpublic virtual {rel.Table} {rel.Table} {{ get; set; }}");
                 }                
             }
-                data.Relations.Where(x => x.RelationType == RelationType.Many2Many).ToList().ForEach(x =>
+                data.Relations.Where(x => !x.IsSoftRelation && x.RelationType == RelationType.Many2Many).ToList().ForEach(x =>
                 {
                     builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table} {{ get; set; }}");
                 });           
@@ -73,7 +73,7 @@ namespace ArvinERPFinal.Domain.Models.{data.Schema}
             builder.HasIndex(i => i.{item.Name})
                .HasDatabaseName(""IX_{data.Table}_{item.Name}"");");
             }
-            foreach (var item in data.Relations)
+            foreach (var item in data.Relations.Where(x=> !x.IsSoftRelation))
             {
                 switch (item.RelationType)
                 {
@@ -132,6 +132,7 @@ namespace ArvinERPFinal.Domain.Models.{data.Schema}
             return builder.ToString();
 
         }
+        //قضیه اش کنسله
         public List<string> GetMany2ManyModelClass()
         {
             var result = new List<string>();
@@ -143,10 +144,10 @@ namespace ArvinERPFinal.Domain.Models.{data.Schema}
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using ArvinERPFinal.Domain.Models.{item.Table};
-using ArvinERPFinal.Domain.Models.{data.Table};
+using ArvinERP.Domain.Models.{item.Table};
+using ArvinERP.Domain.Models.{data.Table};
 
-namespace ArvinERPFinal.Domain.Models.{data.Schema}
+namespace ArvinERP.Domain.Models.{data.Schema}
 {{
     public class {item.Table}{data.Table}
     {{
@@ -189,7 +190,7 @@ namespace ArvinERPFinal.Domain.Models.{data.Schema}
                  $@"
 using System.ComponentModel.DataAnnotations;
 
-namespace ArvinERPFinal.Domain.DTOs.{data.Schema}
+namespace ArvinERP.Domain.DTOs.{data.Schema}
 {{
     public class {data.Table}Dto {(data.Inherited ? $":Base.BaseDto<{data.KeyType}>" : "")}
     {{");
@@ -230,10 +231,10 @@ namespace ArvinERPFinal.Domain.DTOs.{data.Schema}
         {
             StringBuilder builder = new StringBuilder(
                  $@"
-using ArvinERPFinal.Domain.ViewModels.Base;
+using ArvinERP.Domain.ViewModels.Base;
 using System.ComponentModel.DataAnnotations;
 
-namespace ArvinERPFinal.Domain.ViewModels.{data.Schema}
+namespace ArvinERP.Domain.ViewModels.{data.Schema}
 {{
     public class {data.Table}ViewModel {(data.Inherited ? $":BaseViewModel<{data.KeyType}>" : "")}
     {{"
@@ -264,12 +265,12 @@ namespace ArvinERPFinal.Domain.ViewModels.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERPFinal.Domain.DTOs.{data.Schema};
-using ArvinERPFinal.Domain.Models.{data.Schema};
-using ArvinERPFinal.Domain.ViewModels.{data.Schema};
+using ArvinERP.Domain.DTOs.{data.Schema};
+using ArvinERP.Domain.Models.{data.Schema};
+using ArvinERP.Domain.ViewModels.{data.Schema};
 using AutoMapper;
 
-namespace ArvinERPFinal.Domain.Mapping.{data.Schema}
+namespace ArvinERP.Domain.Mapping.{data.Schema}
 {{
     public class {data.Table}MappingProfile :Profile
     {{
@@ -289,10 +290,10 @@ namespace ArvinERPFinal.Domain.Mapping.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERPFinal.Domain.Models.{data.Schema};
-using ArvinERPFinal.Infrastructure.Repositories.Base;
+using ArvinERP.Domain.Models.{data.Schema};
+using ArvinERP.Infrastructure.Repositories.Base;
 
-namespace ArvinERPFinal.Infrastructure.Interfaces.{data.Schema}
+namespace ArvinERP.Infrastructure.Interfaces.{data.Schema}
 {{
     public interface I{data.Table}Repository {(data.Inherited ? $": IBaseRepository<{data.Table}, {data.KeyType}>" : "")}
     {{
@@ -307,16 +308,73 @@ namespace ArvinERPFinal.Infrastructure.Interfaces.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERPFinal.Domain.Models.{data.Schema};
-using ArvinERPFinal.Infrastructure.Interfaces.{data.Schema};
-using ArvinERPFinal.Infrastructure.Repositories.Base;
+using ArvinERP.Domain.Models.{data.Schema};
+using ArvinERP.Infrastructure.Interfaces.{data.Schema};
+using ArvinERP.Infrastructure.Repositories.Base;
 
-namespace ArvinERPFinal.Infrastructure.Repositories.{data.Schema}
+namespace ArvinERP.Infrastructure.Repositories.{data.Schema}
 {{
     public class {data.Table}Repository :{(data.Inherited ? $" BaseRepository<{data.Table}, {data.KeyType}>," : "")} I{data.Table}Repository
     {{
+
         public {data.Table}Repository(ArvinContext repositoryContext) {(data.Inherited ? ": base(repositoryContext)" : "")}
         {{
+        }}
+    }}
+}}
+                            ");
+            return builder.ToString();
+
+        }
+
+        public string GetRepositoryWithRelation()
+        {
+            var princtables = data.Relations.Where(x => x.IsSoftRelation).Select(x => x.Table).Distinct().ToList();
+            var pincRepos = princtables.Select(x => $",{x}Repository {x.ToLower()}Repo").ToList();
+           var overrides = princtables.Select(p =>             
+                $@"
+            if({p.ToLower()}Repo.GetQueryable(x=> {string.Join(" && ", data.Relations.Where(x => x.IsSoftRelation && x.Table == p).Select(s => $"x.{s.PrincipalKey}== instance.{s.ForeignKey}"))}).Count()==0)
+            {{
+                throw new InvalidOperationException(""کد وارد شده برای '{{0}}' صحیح نمی باشد"");
+            }}"
+            );
+            
+            StringBuilder builder = new StringBuilder();
+            builder.Append($@"
+using ArvinERP.Domain.Models.{data.Schema};
+using ArvinERP.Infrastructure.Interfaces.{data.Schema};
+using ArvinERP.Infrastructure.Repositories.Base;");
+
+            foreach (var item in data.Relations.Where(x => x.IsSoftRelation))
+            {
+                builder.Append($"\nusing ArvinERP.Infrastructure.Repositories.{item.Schema}");
+            }
+            builder.Append($@"
+namespace ArvinERP.Infrastructure.Repositories.{data.Schema}
+{{
+    public class {data.Table}Repository :{(data.Inherited ? $" BaseRepository<{data.Table}, {data.KeyType}>," : "")} I{data.Table}Repository
+    {{
+");
+            princtables.ForEach(x => builder.Append($"\t\tprivate readonly {x}Repository {x.ToLower()}Repo;\r\n"));
+
+            builder.Append($@"
+        public {data.Table}Repository(ArvinContext repositoryContext {string.Join("", pincRepos)}) {(data.Inherited ? ": base(repositoryContext)" : "")}
+        {{");
+            princtables.ForEach(x => builder.Append($"\nthis.{x.ToLower()}Repo = {x.ToLower()}Repo;"));
+
+            builder.Append($@"
+        }}");
+            builder.Append($@"
+
+        protected override Task BeforeCreate({data.Table} instance)
+        {{
+            {string.Join("", overrides)}
+            return base.BeforeCreate(instance);
+        }}
+        protected override Task BeforeEdit({data.Table} instance)
+        {{
+            {string.Join("", overrides)}
+            return base.BeforeEdit(instance);
         }}
     }}
 }}
@@ -330,12 +388,12 @@ namespace ArvinERPFinal.Infrastructure.Repositories.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERPFinal.Application.Services.Base;
-using ArvinERPFinal.Domain.DTOs.{data.Schema};
-using ArvinERPFinal.Domain.Models.{data.Schema};
-using ArvinERPFinal.Domain.ViewModels.{data.Schema};
+using ArvinERP.Application.Services.Base;
+using ArvinERP.Domain.DTOs.{data.Schema};
+using ArvinERP.Domain.Models.{data.Schema};
+using ArvinERP.Domain.ViewModels.{data.Schema};
 
-namespace ArvinERPFinal.Application.Interfaces.{data.Schema}
+namespace ArvinERP.Application.Interfaces.{data.Schema}
 {{
     public interface I{data.Table}Service {(data.Inherited ? $": IBaseService<{data.Table}, {data.Table}Dto, {data.Table}ViewModel, {data.KeyType}>" : "")}
     {{
@@ -351,15 +409,15 @@ namespace ArvinERPFinal.Application.Interfaces.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERPFinal.Application.Interfaces.{data.Schema};
-using ArvinERPFinal.Domain.DTOs.{data.Schema};
-using ArvinERPFinal.Domain.Models.{data.Schema};
-using ArvinERPFinal.Domain.ViewModels.{data.Schema};
-using ArvinERPFinal.Infrastructure.Interfaces.{data.Schema};
+using ArvinERP.Application.Interfaces.{data.Schema};
+using ArvinERP.Domain.DTOs.{data.Schema};
+using ArvinERP.Domain.Models.{data.Schema};
+using ArvinERP.Domain.ViewModels.{data.Schema};
+using ArvinERP.Infrastructure.Interfaces.{data.Schema};
 using AutoMapper;
 
 
-namespace ArvinERPFinal.Application.Services.{data.Schema}
+namespace ArvinERP.Application.Services.{data.Schema}
 {{
     public class {data.Table}Service : {(data.Inherited ? $"Base.BaseService<{data.Table}, {data.Table}Dto, {data.Table}ViewModel, {data.KeyType}>, " : "")}I{data.Table}Service
     {{
@@ -380,13 +438,13 @@ namespace ArvinERPFinal.Application.Services.{data.Schema}
             builder.Append(
 $@"
 using Microsoft.AspNetCore.Mvc;
-using ArvinERPFinal.API.Attributes;
-using ArvinERPFinal.Domain.DTOs.{data.Schema};
-using ArvinERPFinal.Domain.Models.{data.Schema};
-using ArvinERPFinal.Domain.ViewModels.{data.Schema};
-using ArvinERPFinal.Application.Interfaces.{data.Schema};
+using ArvinERP.API.Attributes;
+using ArvinERP.Domain.DTOs.{data.Schema};
+using ArvinERP.Domain.Models.{data.Schema};
+using ArvinERP.Domain.ViewModels.{data.Schema};
+using ArvinERP.Application.Interfaces.{data.Schema};
 
-namespace ArvinERPFinal.API.Controllers.{data.Schema}
+namespace ArvinERP.API.Controllers.{data.Schema}
 {{
     [Route(""api/{data.Schema}/[controller]"")]
     [ApiController]
@@ -580,7 +638,7 @@ namespace ArvinERPFinal.API.Controllers.{data.Schema}
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArvinERPFinal.Domain.Resources {{
+namespace ArvinERP.Domain.Resources {{
     using System;
     
     
@@ -611,7 +669,7 @@ namespace ArvinERPFinal.Domain.Resources {{
         public static global::System.Resources.ResourceManager ResourceManager {{
             get {{
                 if (object.ReferenceEquals(resourceMan, null)) {{
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager(""ArvinERPFinal.Domain.Resources.{data.Schema}"", typeof({data.Schema}).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager(""ArvinERP.Domain.Resources.{data.Schema}"", typeof({data.Schema}).Assembly);
                     resourceMan = temp;
                 }}
                 return resourceMan;
@@ -679,5 +737,7 @@ namespace ArvinERPFinal.Domain.Resources {{
 
             return "";
         }
+
+       
     }
 }

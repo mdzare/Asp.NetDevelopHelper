@@ -48,46 +48,52 @@
             this.label7 = new System.Windows.Forms.Label();
             this.undoBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.resourceCreateCheck = new System.Windows.Forms.CheckBox();
-            this.mainTabControl = new System.Windows.Forms.TabControl();
-            this.settingTab = new System.Windows.Forms.TabPage();
-            this.relationCreateCheck = new System.Windows.Forms.CheckBox();
-            this.contextReferenceCreateCheck = new System.Windows.Forms.CheckBox();
-            this.mappingCreateCheck = new System.Windows.Forms.CheckBox();
-            this.controllerCreateCheck = new System.Windows.Forms.CheckBox();
-            this.serviceCreateCheck = new System.Windows.Forms.CheckBox();
-            this.repositoryCreateCheck = new System.Windows.Forms.CheckBox();
-            this.viewModelCreateCheck = new System.Windows.Forms.CheckBox();
-            this.dtoCreateCheck = new System.Windows.Forms.CheckBox();
-            this.modelCreateCheck = new System.Windows.Forms.CheckBox();
-            this.opnCoreWebPathBtn = new System.Windows.Forms.Button();
-            this.coreWebPathTxtBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.appPathTtextBox = new System.Windows.Forms.TextBox();
-            this.opnApplPathBtn = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.infraPathTxtBx = new System.Windows.Forms.TextBox();
-            this.opnInfraPathBtn = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.domainPathTxtBx = new System.Windows.Forms.TextBox();
-            this.opnDomainPathBtn = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.propsTab = new System.Windows.Forms.TabPage();
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.propertiesDataGridView = new System.Windows.Forms.DataGridView();
-            this.PropName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Caption = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Required = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.MaxLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegEx = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unique = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Key = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Index = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.relationTab = new System.Windows.Forms.TabPage();
             this.relationPanel = new System.Windows.Forms.Panel();
             this.relationDataGridView = new System.Windows.Forms.DataGridView();
+            this.propsTab = new System.Windows.Forms.TabPage();
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.propertiesDataGridView = new System.Windows.Forms.DataGridView();
+            this.Index = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Key = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Unique = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegEx = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Required = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Caption = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PropName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.settingTab = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.opnDomainPathBtn = new System.Windows.Forms.Button();
+            this.domainPathTxtBx = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.opnInfraPathBtn = new System.Windows.Forms.Button();
+            this.infraPathTxtBx = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.resourceCreateCheck = new System.Windows.Forms.CheckBox();
+            this.opnApplPathBtn = new System.Windows.Forms.Button();
+            this.appPathTtextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.coreWebPathTxtBox = new System.Windows.Forms.TextBox();
+            this.opnCoreWebPathBtn = new System.Windows.Forms.Button();
+            this.modelCreateCheck = new System.Windows.Forms.CheckBox();
+            this.dtoCreateCheck = new System.Windows.Forms.CheckBox();
+            this.viewModelCreateCheck = new System.Windows.Forms.CheckBox();
+            this.repositoryCreateCheck = new System.Windows.Forms.CheckBox();
+            this.serviceCreateCheck = new System.Windows.Forms.CheckBox();
+            this.controllerCreateCheck = new System.Windows.Forms.CheckBox();
+            this.mappingCreateCheck = new System.Windows.Forms.CheckBox();
+            this.contextReferenceCreateCheck = new System.Windows.Forms.CheckBox();
+            this.relationCreateCheck = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.mainTabControl = new System.Windows.Forms.TabControl();
             this.Schema = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Table = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.PrincipalKey = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -95,15 +101,16 @@
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.DeleteBehave = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.SoftDelete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SoftRelation = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.topPanel.SuspendLayout();
-            this.mainTabControl.SuspendLayout();
-            this.settingTab.SuspendLayout();
-            this.propsTab.SuspendLayout();
-            this.mainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.propertiesDataGridView)).BeginInit();
             this.relationTab.SuspendLayout();
             this.relationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.relationDataGridView)).BeginInit();
+            this.propsTab.SuspendLayout();
+            this.mainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.propertiesDataGridView)).BeginInit();
+            this.settingTab.SuspendLayout();
+            this.mainTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // prjPathTextbx
@@ -333,311 +340,48 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "کلید وراثتی:";
             // 
-            // resourceCreateCheck
+            // relationTab
             // 
-            this.resourceCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.resourceCreateCheck.AutoSize = true;
-            this.resourceCreateCheck.Checked = true;
-            this.resourceCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.resourceCreateCheck.Location = new System.Drawing.Point(976, 234);
-            this.resourceCreateCheck.Name = "resourceCreateCheck";
-            this.resourceCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.resourceCreateCheck.Size = new System.Drawing.Size(163, 24);
-            this.resourceCreateCheck.TabIndex = 8;
-            this.resourceCreateCheck.Text = "ایجاد/حذف Resource";
-            this.resourceCreateCheck.UseVisualStyleBackColor = true;
+            this.relationTab.Controls.Add(this.relationPanel);
+            this.relationTab.Location = new System.Drawing.Point(4, 29);
+            this.relationTab.Name = "relationTab";
+            this.relationTab.Padding = new System.Windows.Forms.Padding(3);
+            this.relationTab.Size = new System.Drawing.Size(1161, 505);
+            this.relationTab.TabIndex = 1;
+            this.relationTab.Text = "روابط جدول";
+            this.relationTab.UseVisualStyleBackColor = true;
             // 
-            // mainTabControl
+            // relationPanel
             // 
-            this.mainTabControl.Controls.Add(this.settingTab);
-            this.mainTabControl.Controls.Add(this.propsTab);
-            this.mainTabControl.Controls.Add(this.relationTab);
-            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTabControl.Location = new System.Drawing.Point(0, 124);
-            this.mainTabControl.Name = "mainTabControl";
-            this.mainTabControl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.mainTabControl.RightToLeftLayout = true;
-            this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1169, 538);
-            this.mainTabControl.TabIndex = 5;
+            this.relationPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.relationPanel.Controls.Add(this.relationDataGridView);
+            this.relationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.relationPanel.Location = new System.Drawing.Point(3, 3);
+            this.relationPanel.Name = "relationPanel";
+            this.relationPanel.Size = new System.Drawing.Size(1155, 499);
+            this.relationPanel.TabIndex = 0;
             // 
-            // settingTab
+            // relationDataGridView
             // 
-            this.settingTab.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.settingTab.Controls.Add(this.relationCreateCheck);
-            this.settingTab.Controls.Add(this.contextReferenceCreateCheck);
-            this.settingTab.Controls.Add(this.mappingCreateCheck);
-            this.settingTab.Controls.Add(this.controllerCreateCheck);
-            this.settingTab.Controls.Add(this.serviceCreateCheck);
-            this.settingTab.Controls.Add(this.repositoryCreateCheck);
-            this.settingTab.Controls.Add(this.viewModelCreateCheck);
-            this.settingTab.Controls.Add(this.dtoCreateCheck);
-            this.settingTab.Controls.Add(this.modelCreateCheck);
-            this.settingTab.Controls.Add(this.opnCoreWebPathBtn);
-            this.settingTab.Controls.Add(this.coreWebPathTxtBox);
-            this.settingTab.Controls.Add(this.label10);
-            this.settingTab.Controls.Add(this.appPathTtextBox);
-            this.settingTab.Controls.Add(this.opnApplPathBtn);
-            this.settingTab.Controls.Add(this.resourceCreateCheck);
-            this.settingTab.Controls.Add(this.label9);
-            this.settingTab.Controls.Add(this.infraPathTxtBx);
-            this.settingTab.Controls.Add(this.opnInfraPathBtn);
-            this.settingTab.Controls.Add(this.label8);
-            this.settingTab.Controls.Add(this.domainPathTxtBx);
-            this.settingTab.Controls.Add(this.opnDomainPathBtn);
-            this.settingTab.Controls.Add(this.label6);
-            this.settingTab.Location = new System.Drawing.Point(4, 29);
-            this.settingTab.Name = "settingTab";
-            this.settingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.settingTab.Size = new System.Drawing.Size(1161, 505);
-            this.settingTab.TabIndex = 2;
-            this.settingTab.Text = "تنظیمات";
-            // 
-            // relationCreateCheck
-            // 
-            this.relationCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.relationCreateCheck.AutoSize = true;
-            this.relationCreateCheck.Checked = true;
-            this.relationCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.relationCreateCheck.Location = new System.Drawing.Point(1001, 294);
-            this.relationCreateCheck.Name = "relationCreateCheck";
-            this.relationCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.relationCreateCheck.Size = new System.Drawing.Size(138, 24);
-            this.relationCreateCheck.TabIndex = 29;
-            this.relationCreateCheck.Text = "ایجاد/حذف روابط";
-            this.relationCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // contextReferenceCreateCheck
-            // 
-            this.contextReferenceCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.contextReferenceCreateCheck.AutoSize = true;
-            this.contextReferenceCreateCheck.Checked = true;
-            this.contextReferenceCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.contextReferenceCreateCheck.Location = new System.Drawing.Point(940, 264);
-            this.contextReferenceCreateCheck.Name = "contextReferenceCreateCheck";
-            this.contextReferenceCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextReferenceCreateCheck.Size = new System.Drawing.Size(199, 24);
-            this.contextReferenceCreateCheck.TabIndex = 28;
-            this.contextReferenceCreateCheck.Text = "ایجاد/حذف رفرنس Context";
-            this.contextReferenceCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // mappingCreateCheck
-            // 
-            this.mappingCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mappingCreateCheck.AutoSize = true;
-            this.mappingCreateCheck.Checked = true;
-            this.mappingCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mappingCreateCheck.Location = new System.Drawing.Point(976, 114);
-            this.mappingCreateCheck.Name = "mappingCreateCheck";
-            this.mappingCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.mappingCreateCheck.Size = new System.Drawing.Size(163, 24);
-            this.mappingCreateCheck.TabIndex = 27;
-            this.mappingCreateCheck.Text = "ایجاد/حذف Mapping";
-            this.mappingCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // controllerCreateCheck
-            // 
-            this.controllerCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.controllerCreateCheck.AutoSize = true;
-            this.controllerCreateCheck.Checked = true;
-            this.controllerCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.controllerCreateCheck.Location = new System.Drawing.Point(970, 204);
-            this.controllerCreateCheck.Name = "controllerCreateCheck";
-            this.controllerCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.controllerCreateCheck.Size = new System.Drawing.Size(169, 24);
-            this.controllerCreateCheck.TabIndex = 26;
-            this.controllerCreateCheck.Text = "ایجاد/حذف Controller";
-            this.controllerCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // serviceCreateCheck
-            // 
-            this.serviceCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.serviceCreateCheck.AutoSize = true;
-            this.serviceCreateCheck.Checked = true;
-            this.serviceCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.serviceCreateCheck.Location = new System.Drawing.Point(989, 174);
-            this.serviceCreateCheck.Name = "serviceCreateCheck";
-            this.serviceCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.serviceCreateCheck.Size = new System.Drawing.Size(150, 24);
-            this.serviceCreateCheck.TabIndex = 25;
-            this.serviceCreateCheck.Text = "ایجاد/حذف Service";
-            this.serviceCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // repositoryCreateCheck
-            // 
-            this.repositoryCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.repositoryCreateCheck.AutoSize = true;
-            this.repositoryCreateCheck.Checked = true;
-            this.repositoryCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.repositoryCreateCheck.Location = new System.Drawing.Point(965, 144);
-            this.repositoryCreateCheck.Name = "repositoryCreateCheck";
-            this.repositoryCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.repositoryCreateCheck.Size = new System.Drawing.Size(174, 24);
-            this.repositoryCreateCheck.TabIndex = 24;
-            this.repositoryCreateCheck.Text = "ایجاد/حذف Repository";
-            this.repositoryCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // viewModelCreateCheck
-            // 
-            this.viewModelCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewModelCreateCheck.AutoSize = true;
-            this.viewModelCreateCheck.Checked = true;
-            this.viewModelCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.viewModelCreateCheck.Location = new System.Drawing.Point(961, 84);
-            this.viewModelCreateCheck.Name = "viewModelCreateCheck";
-            this.viewModelCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.viewModelCreateCheck.Size = new System.Drawing.Size(178, 24);
-            this.viewModelCreateCheck.TabIndex = 23;
-            this.viewModelCreateCheck.Text = "ایجاد/حذف ViewModel";
-            this.viewModelCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // dtoCreateCheck
-            // 
-            this.dtoCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtoCreateCheck.AutoSize = true;
-            this.dtoCreateCheck.Checked = true;
-            this.dtoCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dtoCreateCheck.Location = new System.Drawing.Point(1011, 54);
-            this.dtoCreateCheck.Name = "dtoCreateCheck";
-            this.dtoCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dtoCreateCheck.Size = new System.Drawing.Size(128, 24);
-            this.dtoCreateCheck.TabIndex = 22;
-            this.dtoCreateCheck.Text = "ایجاد/حذف Dto";
-            this.dtoCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // modelCreateCheck
-            // 
-            this.modelCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelCreateCheck.AutoSize = true;
-            this.modelCreateCheck.Checked = true;
-            this.modelCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.modelCreateCheck.Location = new System.Drawing.Point(993, 24);
-            this.modelCreateCheck.Name = "modelCreateCheck";
-            this.modelCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.modelCreateCheck.Size = new System.Drawing.Size(146, 24);
-            this.modelCreateCheck.TabIndex = 21;
-            this.modelCreateCheck.Text = "ایجاد/حذف Model";
-            this.modelCreateCheck.UseVisualStyleBackColor = true;
-            // 
-            // opnCoreWebPathBtn
-            // 
-            this.opnCoreWebPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.opnCoreWebPathBtn.Location = new System.Drawing.Point(15, 27);
-            this.opnCoreWebPathBtn.Name = "opnCoreWebPathBtn";
-            this.opnCoreWebPathBtn.Size = new System.Drawing.Size(47, 29);
-            this.opnCoreWebPathBtn.TabIndex = 20;
-            this.opnCoreWebPathBtn.Text = ". . .";
-            this.opnCoreWebPathBtn.UseVisualStyleBackColor = true;
-            // 
-            // coreWebPathTxtBox
-            // 
-            this.coreWebPathTxtBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.coreWebPathTxtBox.Location = new System.Drawing.Point(68, 24);
-            this.coreWebPathTxtBox.Name = "coreWebPathTxtBox";
-            this.coreWebPathTxtBox.ReadOnly = true;
-            this.coreWebPathTxtBox.Size = new System.Drawing.Size(681, 27);
-            this.coreWebPathTxtBox.TabIndex = 18;
-            this.coreWebPathTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(755, 27);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(125, 20);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "Asp.net Core Path";
-            // 
-            // appPathTtextBox
-            // 
-            this.appPathTtextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.appPathTtextBox.Location = new System.Drawing.Point(68, 63);
-            this.appPathTtextBox.Name = "appPathTtextBox";
-            this.appPathTtextBox.ReadOnly = true;
-            this.appPathTtextBox.Size = new System.Drawing.Size(681, 27);
-            this.appPathTtextBox.TabIndex = 15;
-            this.appPathTtextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // opnApplPathBtn
-            // 
-            this.opnApplPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.opnApplPathBtn.Location = new System.Drawing.Point(15, 62);
-            this.opnApplPathBtn.Name = "opnApplPathBtn";
-            this.opnApplPathBtn.Size = new System.Drawing.Size(47, 29);
-            this.opnApplPathBtn.TabIndex = 16;
-            this.opnApplPathBtn.Text = ". . .";
-            this.opnApplPathBtn.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(755, 66);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 20);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Application Path";
-            // 
-            // infraPathTxtBx
-            // 
-            this.infraPathTxtBx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.infraPathTxtBx.Location = new System.Drawing.Point(68, 98);
-            this.infraPathTxtBx.Name = "infraPathTxtBx";
-            this.infraPathTxtBx.ReadOnly = true;
-            this.infraPathTxtBx.Size = new System.Drawing.Size(681, 27);
-            this.infraPathTxtBx.TabIndex = 12;
-            this.infraPathTxtBx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // opnInfraPathBtn
-            // 
-            this.opnInfraPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.opnInfraPathBtn.Location = new System.Drawing.Point(15, 97);
-            this.opnInfraPathBtn.Name = "opnInfraPathBtn";
-            this.opnInfraPathBtn.Size = new System.Drawing.Size(47, 29);
-            this.opnInfraPathBtn.TabIndex = 13;
-            this.opnInfraPathBtn.Text = ". . .";
-            this.opnInfraPathBtn.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(755, 101);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(128, 20);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Infrastructure Path";
-            // 
-            // domainPathTxtBx
-            // 
-            this.domainPathTxtBx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.domainPathTxtBx.Location = new System.Drawing.Point(68, 133);
-            this.domainPathTxtBx.Name = "domainPathTxtBx";
-            this.domainPathTxtBx.ReadOnly = true;
-            this.domainPathTxtBx.Size = new System.Drawing.Size(681, 27);
-            this.domainPathTxtBx.TabIndex = 9;
-            this.domainPathTxtBx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // opnDomainPathBtn
-            // 
-            this.opnDomainPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.opnDomainPathBtn.Location = new System.Drawing.Point(15, 132);
-            this.opnDomainPathBtn.Name = "opnDomainPathBtn";
-            this.opnDomainPathBtn.Size = new System.Drawing.Size(47, 29);
-            this.opnDomainPathBtn.TabIndex = 10;
-            this.opnDomainPathBtn.Text = ". . .";
-            this.opnDomainPathBtn.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(755, 136);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Domain Path";
+            this.relationDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.relationDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Schema,
+            this.Table,
+            this.PrincipalKey,
+            this.ForeignKey,
+            this.dataGridViewComboBoxColumn1,
+            this.DeleteBehave,
+            this.SoftDelete,
+            this.SoftRelation});
+            this.relationDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.relationDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.relationDataGridView.Name = "relationDataGridView";
+            this.relationDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.relationDataGridView.RowHeadersWidth = 51;
+            this.relationDataGridView.RowTemplate.Height = 29;
+            this.relationDataGridView.Size = new System.Drawing.Size(1155, 499);
+            this.relationDataGridView.TabIndex = 0;
+            this.relationDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.relationDataGridView_CellValueChanged);
             // 
             // propsTab
             // 
@@ -684,61 +428,12 @@
             this.propertiesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.propertiesDataGridView_CellValueChanged);
             this.propertiesDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
-            // PropName
+            // Index
             // 
-            this.PropName.HeaderText = "Property";
-            this.PropName.MinimumWidth = 6;
-            this.PropName.Name = "PropName";
-            this.PropName.Width = 250;
-            // 
-            // Caption
-            // 
-            this.Caption.HeaderText = "Caption";
-            this.Caption.MinimumWidth = 6;
-            this.Caption.Name = "Caption";
-            this.Caption.Width = 200;
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Type";
-            this.Type.MinimumWidth = 6;
-            this.Type.Name = "Type";
-            this.Type.Width = 80;
-            // 
-            // Required
-            // 
-            this.Required.HeaderText = "Required";
-            this.Required.MinimumWidth = 6;
-            this.Required.Name = "Required";
-            this.Required.Width = 70;
-            // 
-            // MaxLength
-            // 
-            this.MaxLength.HeaderText = "MaxLength";
-            this.MaxLength.MinimumWidth = 6;
-            this.MaxLength.Name = "MaxLength";
-            this.MaxLength.Width = 90;
-            // 
-            // MinLength
-            // 
-            this.MinLength.HeaderText = "MinLength";
-            this.MinLength.MinimumWidth = 6;
-            this.MinLength.Name = "MinLength";
-            this.MinLength.Width = 90;
-            // 
-            // RegEx
-            // 
-            this.RegEx.HeaderText = "RegEx";
-            this.RegEx.MinimumWidth = 6;
-            this.RegEx.Name = "RegEx";
-            this.RegEx.Width = 150;
-            // 
-            // Unique
-            // 
-            this.Unique.HeaderText = "Unique";
-            this.Unique.MinimumWidth = 6;
-            this.Unique.Name = "Unique";
-            this.Unique.Width = 70;
+            this.Index.HeaderText = "Index";
+            this.Index.MinimumWidth = 6;
+            this.Index.Name = "Index";
+            this.Index.Width = 50;
             // 
             // Key
             // 
@@ -749,54 +444,433 @@
             this.Key.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Key.Width = 40;
             // 
-            // Index
+            // Unique
             // 
-            this.Index.HeaderText = "Index";
-            this.Index.MinimumWidth = 6;
-            this.Index.Name = "Index";
-            this.Index.Width = 50;
+            this.Unique.HeaderText = "Unique";
+            this.Unique.MinimumWidth = 6;
+            this.Unique.Name = "Unique";
+            this.Unique.Width = 70;
             // 
-            // relationTab
+            // RegEx
             // 
-            this.relationTab.Controls.Add(this.relationPanel);
-            this.relationTab.Location = new System.Drawing.Point(4, 29);
-            this.relationTab.Name = "relationTab";
-            this.relationTab.Padding = new System.Windows.Forms.Padding(3);
-            this.relationTab.Size = new System.Drawing.Size(1161, 505);
-            this.relationTab.TabIndex = 1;
-            this.relationTab.Text = "روابط جدول";
-            this.relationTab.UseVisualStyleBackColor = true;
+            this.RegEx.HeaderText = "RegEx";
+            this.RegEx.MinimumWidth = 6;
+            this.RegEx.Name = "RegEx";
+            this.RegEx.Width = 150;
             // 
-            // relationPanel
+            // MinLength
             // 
-            this.relationPanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.relationPanel.Controls.Add(this.relationDataGridView);
-            this.relationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.relationPanel.Location = new System.Drawing.Point(3, 3);
-            this.relationPanel.Name = "relationPanel";
-            this.relationPanel.Size = new System.Drawing.Size(1155, 499);
-            this.relationPanel.TabIndex = 0;
+            this.MinLength.HeaderText = "MinLength";
+            this.MinLength.MinimumWidth = 6;
+            this.MinLength.Name = "MinLength";
+            this.MinLength.Width = 90;
             // 
-            // relationDataGridView
+            // MaxLength
             // 
-            this.relationDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.relationDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Schema,
-            this.Table,
-            this.PrincipalKey,
-            this.ForeignKey,
-            this.dataGridViewComboBoxColumn1,
-            this.DeleteBehave,
-            this.SoftDelete});
-            this.relationDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.relationDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.relationDataGridView.Name = "relationDataGridView";
-            this.relationDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.relationDataGridView.RowHeadersWidth = 51;
-            this.relationDataGridView.RowTemplate.Height = 29;
-            this.relationDataGridView.Size = new System.Drawing.Size(1155, 499);
-            this.relationDataGridView.TabIndex = 0;
-            this.relationDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.relationDataGridView_CellValueChanged);
+            this.MaxLength.HeaderText = "MaxLength";
+            this.MaxLength.MinimumWidth = 6;
+            this.MaxLength.Name = "MaxLength";
+            this.MaxLength.Width = 90;
+            // 
+            // Required
+            // 
+            this.Required.HeaderText = "Required";
+            this.Required.MinimumWidth = 6;
+            this.Required.Name = "Required";
+            this.Required.Width = 70;
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Type";
+            this.Type.MinimumWidth = 6;
+            this.Type.Name = "Type";
+            this.Type.Width = 80;
+            // 
+            // Caption
+            // 
+            this.Caption.HeaderText = "Caption";
+            this.Caption.MinimumWidth = 6;
+            this.Caption.Name = "Caption";
+            this.Caption.Width = 200;
+            // 
+            // PropName
+            // 
+            this.PropName.HeaderText = "Property";
+            this.PropName.MinimumWidth = 6;
+            this.PropName.Name = "PropName";
+            this.PropName.Width = 250;
+            // 
+            // settingTab
+            // 
+            this.settingTab.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.settingTab.Controls.Add(this.textBox2);
+            this.settingTab.Controls.Add(this.button2);
+            this.settingTab.Controls.Add(this.label12);
+            this.settingTab.Controls.Add(this.textBox1);
+            this.settingTab.Controls.Add(this.button1);
+            this.settingTab.Controls.Add(this.label11);
+            this.settingTab.Controls.Add(this.relationCreateCheck);
+            this.settingTab.Controls.Add(this.contextReferenceCreateCheck);
+            this.settingTab.Controls.Add(this.mappingCreateCheck);
+            this.settingTab.Controls.Add(this.controllerCreateCheck);
+            this.settingTab.Controls.Add(this.serviceCreateCheck);
+            this.settingTab.Controls.Add(this.repositoryCreateCheck);
+            this.settingTab.Controls.Add(this.viewModelCreateCheck);
+            this.settingTab.Controls.Add(this.dtoCreateCheck);
+            this.settingTab.Controls.Add(this.modelCreateCheck);
+            this.settingTab.Controls.Add(this.opnCoreWebPathBtn);
+            this.settingTab.Controls.Add(this.coreWebPathTxtBox);
+            this.settingTab.Controls.Add(this.label10);
+            this.settingTab.Controls.Add(this.appPathTtextBox);
+            this.settingTab.Controls.Add(this.opnApplPathBtn);
+            this.settingTab.Controls.Add(this.resourceCreateCheck);
+            this.settingTab.Controls.Add(this.label9);
+            this.settingTab.Controls.Add(this.infraPathTxtBx);
+            this.settingTab.Controls.Add(this.opnInfraPathBtn);
+            this.settingTab.Controls.Add(this.label8);
+            this.settingTab.Controls.Add(this.domainPathTxtBx);
+            this.settingTab.Controls.Add(this.opnDomainPathBtn);
+            this.settingTab.Controls.Add(this.label6);
+            this.settingTab.Location = new System.Drawing.Point(4, 29);
+            this.settingTab.Name = "settingTab";
+            this.settingTab.Padding = new System.Windows.Forms.Padding(3);
+            this.settingTab.Size = new System.Drawing.Size(1161, 505);
+            this.settingTab.TabIndex = 2;
+            this.settingTab.Text = "تنظیمات";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(755, 136);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Domain Path";
+            // 
+            // opnDomainPathBtn
+            // 
+            this.opnDomainPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.opnDomainPathBtn.Location = new System.Drawing.Point(15, 132);
+            this.opnDomainPathBtn.Name = "opnDomainPathBtn";
+            this.opnDomainPathBtn.Size = new System.Drawing.Size(47, 29);
+            this.opnDomainPathBtn.TabIndex = 10;
+            this.opnDomainPathBtn.Text = ". . .";
+            this.opnDomainPathBtn.UseVisualStyleBackColor = true;
+            // 
+            // domainPathTxtBx
+            // 
+            this.domainPathTxtBx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.domainPathTxtBx.Location = new System.Drawing.Point(68, 133);
+            this.domainPathTxtBx.Name = "domainPathTxtBx";
+            this.domainPathTxtBx.ReadOnly = true;
+            this.domainPathTxtBx.Size = new System.Drawing.Size(681, 27);
+            this.domainPathTxtBx.TabIndex = 9;
+            this.domainPathTxtBx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(755, 101);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(128, 20);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Infrastructure Path";
+            // 
+            // opnInfraPathBtn
+            // 
+            this.opnInfraPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.opnInfraPathBtn.Location = new System.Drawing.Point(15, 97);
+            this.opnInfraPathBtn.Name = "opnInfraPathBtn";
+            this.opnInfraPathBtn.Size = new System.Drawing.Size(47, 29);
+            this.opnInfraPathBtn.TabIndex = 13;
+            this.opnInfraPathBtn.Text = ". . .";
+            this.opnInfraPathBtn.UseVisualStyleBackColor = true;
+            // 
+            // infraPathTxtBx
+            // 
+            this.infraPathTxtBx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.infraPathTxtBx.Location = new System.Drawing.Point(68, 98);
+            this.infraPathTxtBx.Name = "infraPathTxtBx";
+            this.infraPathTxtBx.ReadOnly = true;
+            this.infraPathTxtBx.Size = new System.Drawing.Size(681, 27);
+            this.infraPathTxtBx.TabIndex = 12;
+            this.infraPathTxtBx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(755, 66);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(118, 20);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Application Path";
+            // 
+            // resourceCreateCheck
+            // 
+            this.resourceCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.resourceCreateCheck.AutoSize = true;
+            this.resourceCreateCheck.Checked = true;
+            this.resourceCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.resourceCreateCheck.Location = new System.Drawing.Point(976, 234);
+            this.resourceCreateCheck.Name = "resourceCreateCheck";
+            this.resourceCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.resourceCreateCheck.Size = new System.Drawing.Size(163, 24);
+            this.resourceCreateCheck.TabIndex = 8;
+            this.resourceCreateCheck.Text = "ایجاد/حذف Resource";
+            this.resourceCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // opnApplPathBtn
+            // 
+            this.opnApplPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.opnApplPathBtn.Location = new System.Drawing.Point(15, 62);
+            this.opnApplPathBtn.Name = "opnApplPathBtn";
+            this.opnApplPathBtn.Size = new System.Drawing.Size(47, 29);
+            this.opnApplPathBtn.TabIndex = 16;
+            this.opnApplPathBtn.Text = ". . .";
+            this.opnApplPathBtn.UseVisualStyleBackColor = true;
+            // 
+            // appPathTtextBox
+            // 
+            this.appPathTtextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.appPathTtextBox.Location = new System.Drawing.Point(68, 63);
+            this.appPathTtextBox.Name = "appPathTtextBox";
+            this.appPathTtextBox.ReadOnly = true;
+            this.appPathTtextBox.Size = new System.Drawing.Size(681, 27);
+            this.appPathTtextBox.TabIndex = 15;
+            this.appPathTtextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(755, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 20);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Asp.net Core Path";
+            // 
+            // coreWebPathTxtBox
+            // 
+            this.coreWebPathTxtBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.coreWebPathTxtBox.Location = new System.Drawing.Point(68, 24);
+            this.coreWebPathTxtBox.Name = "coreWebPathTxtBox";
+            this.coreWebPathTxtBox.ReadOnly = true;
+            this.coreWebPathTxtBox.Size = new System.Drawing.Size(681, 27);
+            this.coreWebPathTxtBox.TabIndex = 18;
+            this.coreWebPathTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // opnCoreWebPathBtn
+            // 
+            this.opnCoreWebPathBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.opnCoreWebPathBtn.Location = new System.Drawing.Point(15, 27);
+            this.opnCoreWebPathBtn.Name = "opnCoreWebPathBtn";
+            this.opnCoreWebPathBtn.Size = new System.Drawing.Size(47, 29);
+            this.opnCoreWebPathBtn.TabIndex = 20;
+            this.opnCoreWebPathBtn.Text = ". . .";
+            this.opnCoreWebPathBtn.UseVisualStyleBackColor = true;
+            // 
+            // modelCreateCheck
+            // 
+            this.modelCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelCreateCheck.AutoSize = true;
+            this.modelCreateCheck.Checked = true;
+            this.modelCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.modelCreateCheck.Location = new System.Drawing.Point(993, 24);
+            this.modelCreateCheck.Name = "modelCreateCheck";
+            this.modelCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.modelCreateCheck.Size = new System.Drawing.Size(146, 24);
+            this.modelCreateCheck.TabIndex = 21;
+            this.modelCreateCheck.Text = "ایجاد/حذف Model";
+            this.modelCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // dtoCreateCheck
+            // 
+            this.dtoCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtoCreateCheck.AutoSize = true;
+            this.dtoCreateCheck.Checked = true;
+            this.dtoCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dtoCreateCheck.Location = new System.Drawing.Point(1011, 54);
+            this.dtoCreateCheck.Name = "dtoCreateCheck";
+            this.dtoCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dtoCreateCheck.Size = new System.Drawing.Size(128, 24);
+            this.dtoCreateCheck.TabIndex = 22;
+            this.dtoCreateCheck.Text = "ایجاد/حذف Dto";
+            this.dtoCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // viewModelCreateCheck
+            // 
+            this.viewModelCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewModelCreateCheck.AutoSize = true;
+            this.viewModelCreateCheck.Checked = true;
+            this.viewModelCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.viewModelCreateCheck.Location = new System.Drawing.Point(961, 84);
+            this.viewModelCreateCheck.Name = "viewModelCreateCheck";
+            this.viewModelCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.viewModelCreateCheck.Size = new System.Drawing.Size(178, 24);
+            this.viewModelCreateCheck.TabIndex = 23;
+            this.viewModelCreateCheck.Text = "ایجاد/حذف ViewModel";
+            this.viewModelCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // repositoryCreateCheck
+            // 
+            this.repositoryCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.repositoryCreateCheck.AutoSize = true;
+            this.repositoryCreateCheck.Checked = true;
+            this.repositoryCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.repositoryCreateCheck.Location = new System.Drawing.Point(965, 144);
+            this.repositoryCreateCheck.Name = "repositoryCreateCheck";
+            this.repositoryCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.repositoryCreateCheck.Size = new System.Drawing.Size(174, 24);
+            this.repositoryCreateCheck.TabIndex = 24;
+            this.repositoryCreateCheck.Text = "ایجاد/حذف Repository";
+            this.repositoryCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // serviceCreateCheck
+            // 
+            this.serviceCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.serviceCreateCheck.AutoSize = true;
+            this.serviceCreateCheck.Checked = true;
+            this.serviceCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.serviceCreateCheck.Location = new System.Drawing.Point(989, 174);
+            this.serviceCreateCheck.Name = "serviceCreateCheck";
+            this.serviceCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.serviceCreateCheck.Size = new System.Drawing.Size(150, 24);
+            this.serviceCreateCheck.TabIndex = 25;
+            this.serviceCreateCheck.Text = "ایجاد/حذف Service";
+            this.serviceCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // controllerCreateCheck
+            // 
+            this.controllerCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.controllerCreateCheck.AutoSize = true;
+            this.controllerCreateCheck.Checked = true;
+            this.controllerCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.controllerCreateCheck.Location = new System.Drawing.Point(970, 204);
+            this.controllerCreateCheck.Name = "controllerCreateCheck";
+            this.controllerCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.controllerCreateCheck.Size = new System.Drawing.Size(169, 24);
+            this.controllerCreateCheck.TabIndex = 26;
+            this.controllerCreateCheck.Text = "ایجاد/حذف Controller";
+            this.controllerCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // mappingCreateCheck
+            // 
+            this.mappingCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mappingCreateCheck.AutoSize = true;
+            this.mappingCreateCheck.Checked = true;
+            this.mappingCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mappingCreateCheck.Location = new System.Drawing.Point(976, 114);
+            this.mappingCreateCheck.Name = "mappingCreateCheck";
+            this.mappingCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.mappingCreateCheck.Size = new System.Drawing.Size(163, 24);
+            this.mappingCreateCheck.TabIndex = 27;
+            this.mappingCreateCheck.Text = "ایجاد/حذف Mapping";
+            this.mappingCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // contextReferenceCreateCheck
+            // 
+            this.contextReferenceCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.contextReferenceCreateCheck.AutoSize = true;
+            this.contextReferenceCreateCheck.Checked = true;
+            this.contextReferenceCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.contextReferenceCreateCheck.Location = new System.Drawing.Point(940, 264);
+            this.contextReferenceCreateCheck.Name = "contextReferenceCreateCheck";
+            this.contextReferenceCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextReferenceCreateCheck.Size = new System.Drawing.Size(199, 24);
+            this.contextReferenceCreateCheck.TabIndex = 28;
+            this.contextReferenceCreateCheck.Text = "ایجاد/حذف رفرنس Context";
+            this.contextReferenceCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // relationCreateCheck
+            // 
+            this.relationCreateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.relationCreateCheck.AutoSize = true;
+            this.relationCreateCheck.Checked = true;
+            this.relationCreateCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.relationCreateCheck.Location = new System.Drawing.Point(1001, 294);
+            this.relationCreateCheck.Name = "relationCreateCheck";
+            this.relationCreateCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.relationCreateCheck.Size = new System.Drawing.Size(138, 24);
+            this.relationCreateCheck.TabIndex = 29;
+            this.relationCreateCheck.Text = "ایجاد/حذف روابط";
+            this.relationCreateCheck.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(755, 174);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(93, 20);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Mapper Path";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(15, 170);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(47, 29);
+            this.button1.TabIndex = 31;
+            this.button1.Text = ". . .";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(68, 171);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(681, 27);
+            this.textBox1.TabIndex = 30;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(755, 207);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(92, 20);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Context Path";
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(15, 203);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(47, 29);
+            this.button2.TabIndex = 34;
+            this.button2.Text = ". . .";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(68, 204);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(681, 27);
+            this.textBox2.TabIndex = 33;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // mainTabControl
+            // 
+            this.mainTabControl.Controls.Add(this.settingTab);
+            this.mainTabControl.Controls.Add(this.propsTab);
+            this.mainTabControl.Controls.Add(this.relationTab);
+            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTabControl.Location = new System.Drawing.Point(0, 124);
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.mainTabControl.RightToLeftLayout = true;
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(1169, 538);
+            this.mainTabControl.TabIndex = 5;
             // 
             // Schema
             // 
@@ -865,7 +939,12 @@
             this.SoftDelete.HeaderText = "SoftDelete";
             this.SoftDelete.MinimumWidth = 6;
             this.SoftDelete.Name = "SoftDelete";
-            this.SoftDelete.Width = 125;
+            // 
+            // SoftRelation
+            // 
+            this.SoftRelation.HeaderText = "SoftRelation";
+            this.SoftRelation.MinimumWidth = 6;
+            this.SoftRelation.Name = "SoftRelation";
             // 
             // Form1
             // 
@@ -881,15 +960,15 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
-            this.mainTabControl.ResumeLayout(false);
-            this.settingTab.ResumeLayout(false);
-            this.settingTab.PerformLayout();
-            this.propsTab.ResumeLayout(false);
-            this.mainPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.propertiesDataGridView)).EndInit();
             this.relationTab.ResumeLayout(false);
             this.relationPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.relationDataGridView)).EndInit();
+            this.propsTab.ResumeLayout(false);
+            this.mainPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.propertiesDataGridView)).EndInit();
+            this.settingTab.ResumeLayout(false);
+            this.settingTab.PerformLayout();
+            this.mainTabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -913,16 +992,11 @@
         private TextBox yearIndexTxbx;
         private Label label7;
         private ComboBox schemaComboBox;
-        private TabControl mainTabControl;
-        private TabPage propsTab;
-        private Panel mainPanel;
-        private DataGridView propertiesDataGridView;
+        private CheckBox InheretedCheckBox;
+        private Label label4;
         private TabPage relationTab;
         private Panel relationPanel;
         private DataGridView relationDataGridView;
-        private CheckBox InheretedCheckBox;
-        private Label label4;
-        private CheckBox resourceCreateCheck;
         private DataGridViewComboBoxColumn Schema;
         private DataGridViewComboBoxColumn Table;
         private DataGridViewComboBoxColumn PrincipalKey;
@@ -930,7 +1004,10 @@
         private DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
         private DataGridViewComboBoxColumn DeleteBehave;
         private DataGridViewCheckBoxColumn SoftDelete;
-        private TabPage settingTab;
+        private DataGridViewCheckBoxColumn SoftRelation;
+        private TabPage propsTab;
+        private Panel mainPanel;
+        private DataGridView propertiesDataGridView;
         private DataGridViewTextBoxColumn PropName;
         private DataGridViewTextBoxColumn Caption;
         private DataGridViewTextBoxColumn Type;
@@ -941,18 +1018,15 @@
         private DataGridViewTextBoxColumn Unique;
         private DataGridViewCheckBoxColumn Key;
         private DataGridViewCheckBoxColumn Index;
-        private Button opnCoreWebPathBtn;
-        private TextBox coreWebPathTxtBox;
-        private Label label10;
-        private TextBox appPathTtextBox;
-        private Button opnApplPathBtn;
-        private Label label9;
-        private TextBox infraPathTxtBx;
-        private Button opnInfraPathBtn;
-        private Label label8;
-        private TextBox domainPathTxtBx;
-        private Button opnDomainPathBtn;
-        private Label label6;
+        private TabPage settingTab;
+        private TextBox textBox2;
+        private Button button2;
+        private Label label12;
+        private TextBox textBox1;
+        private Button button1;
+        private Label label11;
+        private CheckBox relationCreateCheck;
+        private CheckBox contextReferenceCreateCheck;
         private CheckBox mappingCreateCheck;
         private CheckBox controllerCreateCheck;
         private CheckBox serviceCreateCheck;
@@ -960,7 +1034,19 @@
         private CheckBox viewModelCreateCheck;
         private CheckBox dtoCreateCheck;
         private CheckBox modelCreateCheck;
-        private CheckBox contextReferenceCreateCheck;
-        private CheckBox relationCreateCheck;
+        private Button opnCoreWebPathBtn;
+        private TextBox coreWebPathTxtBox;
+        private Label label10;
+        private TextBox appPathTtextBox;
+        private Button opnApplPathBtn;
+        private CheckBox resourceCreateCheck;
+        private Label label9;
+        private TextBox infraPathTxtBx;
+        private Button opnInfraPathBtn;
+        private Label label8;
+        private TextBox domainPathTxtBx;
+        private Button opnDomainPathBtn;
+        private Label label6;
+        private TabControl mainTabControl;
     }
 }

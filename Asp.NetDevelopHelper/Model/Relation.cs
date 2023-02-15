@@ -15,6 +15,7 @@ namespace Asp.NetDevelopHelper.Model
         public RelationType RelationType { get; set; }
         public DeleteBahavior DeleteBahavior { get; set; }
         public bool IsSoftDelete { get; set; }
+        public bool IsSoftRelation { get; set; }
     }
 
     public enum RelationType

@@ -114,7 +114,9 @@ namespace Asp.NetDevelopHelper
                     Table = item.Cells[1].Value.ToString().ReplaceLineEndings("").Trim(),
                     PrincipalKey = item.Cells[2].Value?.ToString().ReplaceLineEndings("").Trim() ?? "ID",
                     ForeignKey = item.Cells[3].Value?.ToString().ReplaceLineEndings("").Trim() ?? "ID",
-                    RelationType = (RelationType)Enum.Parse(typeof(RelationType), item.Cells[4].Value.ToString().ReplaceLineEndings("").Trim())
+                    RelationType = (RelationType)Enum.Parse(typeof(RelationType), item.Cells[4].Value.ToString().ReplaceLineEndings("").Trim()),
+                    IsSoftDelete = (bool)(item.Cells[6].Value?? false),
+                    IsSoftRelation = (bool)(item.Cells[7].Value?? false)
                 };
                 model.Relations.Add(relation);
             }
@@ -225,10 +227,10 @@ namespace Asp.NetDevelopHelper
             {
 
             }
-            coreWebPathTxtBox.Text = parent + "\\ArvinERPFinal.API";
-            appPathTtextBox.Text = parent + "\\ArvinERPFinal.Application";
-            infraPathTxtBx.Text = parent + "\\ArvinERPFinal.Infrastructure";
-            domainPathTxtBx.Text = parent + "\\ArvinERPFinal.Domain";
+            coreWebPathTxtBox.Text = parent + "\\ArvinERP.API";
+            appPathTtextBox.Text = parent + "\\ArvinERP.Application";
+            infraPathTxtBx.Text = parent + "\\ArvinERP.Infrastructure";
+            domainPathTxtBx.Text = parent + "\\ArvinERP.Domain";
         }
 
         private void relationDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -258,25 +260,6 @@ namespace Asp.NetDevelopHelper
                propertiesDataGridView.Rows.OfType<DataGridViewRow>().Where(x => x.Index != -1)
                .Select(x => x.Cells[0].Value?.ToString()).Where(x => x != null).ToList();
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow item in relationDataGridView.Rows)
-            {
-                if (item.IsNewRow)
-                    break;
-                Relation relation = new Relation()
-                {
-                    Schema = item.Cells[0].Value.ToString().ReplaceLineEndings("").Trim(),
-                    Table = item.Cells[1].Value.ToString().ReplaceLineEndings("").Trim(),
-                    PrincipalKey = item.Cells[2].Value?.ToString().ReplaceLineEndings("").Trim() ?? "Id",
-                    ForeignKey = item.Cells[3].Value.ToString().ReplaceLineEndings("").Trim(),
-                    RelationType = (RelationType)Enum.Parse(typeof(RelationType), item.Cells[4].Value.ToString().ReplaceLineEndings("").Trim()),
-                    DeleteBahavior = (DeleteBahavior)Enum.Parse(typeof(DeleteBahavior), item.Cells[5].Value.ToString().ReplaceLineEndings("").Trim()),
-                    IsSoftDelete = (bool)item.Cells[6].Value
-                };
-            }
         }
     }
 }
