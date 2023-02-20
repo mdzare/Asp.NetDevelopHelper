@@ -45,13 +45,13 @@ namespace Asp.NetDevelopHelper
             var model = new BaseModel()
             {
                 ProjectPath = Directory.GetParent(prjPathTextbx.Text).FullName,
-                Table = tableTxbx.Text.ToUpper().Substring(0, 1) + tableTxbx.Text.Substring(1, tableTxbx.Text.Length - 1).ReplaceLineEndings(""),
-                TableCaption = tableCaptionTxbx.Text.ReplaceLineEndings(""),
-                Schema = schemaComboBox.Text.ToUpper().Substring(0, 1) + schemaComboBox.Text.Substring(1, schemaComboBox.Text.Length - 1).ReplaceLineEndings(""),
+                Table = tableTxbx.Text.Trim().ToUpper().Substring(0, 1) + tableTxbx.Text.Substring(1, tableTxbx.Text.Length - 1).ReplaceLineEndings(""),
+                TableCaption = tableCaptionTxbx.Text.Trim().ReplaceLineEndings(""),
+                Schema = schemaComboBox.Text.Trim().ToUpper().Substring(0, 1) + schemaComboBox.Text.Substring(1, schemaComboBox.Text.Length - 1).ReplaceLineEndings(""),
                 Inherited = InheretedCheckBox.Checked,
-                KeyType = keyTypeCombo.Text.ReplaceLineEndings(""),
+                KeyType = keyTypeCombo.Text.Trim().ReplaceLineEndings(""),
                 HasYear = hasYearCheckBox.Checked,
-                YearName = yearTextBox.Text.ReplaceLineEndings(""),
+                YearName = yearTextBox.Text.Trim().ReplaceLineEndings(""),
 
                 CreateModel = modelCreateCheck.Checked,
                 CreateDto = dtoCreateCheck.Checked,
@@ -115,8 +115,8 @@ namespace Asp.NetDevelopHelper
                     PrincipalKey = item.Cells[2].Value?.ToString().ReplaceLineEndings("").Trim() ?? "ID",
                     ForeignKey = item.Cells[3].Value?.ToString().ReplaceLineEndings("").Trim() ?? "ID",
                     RelationType = (RelationType)Enum.Parse(typeof(RelationType), item.Cells[4].Value.ToString().ReplaceLineEndings("").Trim()),
-                    IsSoftDelete = (bool)(item.Cells[6].Value?? false),
-                    IsSoftRelation = (bool)(item.Cells[7].Value?? false)
+                    IsSoftDelete = (bool)(item.Cells[6].Value ?? false),
+                    IsSoftRelation = (bool)(item.Cells[7].Value ?? false)
                 };
                 model.Relations.Add(relation);
             }
@@ -239,10 +239,15 @@ namespace Asp.NetDevelopHelper
             {
                 var tabls = ServiceCreator.GetTables(Directory.GetParent(prjPathTextbx.Text).FullName, relationDataGridView.CurrentRow.Cells[0].Value.ToString());
                 (relationDataGridView.CurrentRow.Cells[1] as DataGridViewComboBoxCell).DataSource = tabls;
+                (relationDataGridView.CurrentRow.Cells[2] as DataGridViewComboBoxCell).Value = null;
             }
             if (e.ColumnIndex == 1 && relationDataGridView.CurrentRow?.Cells[1].Value != null)
             {
                 var props = ServiceCreator.GetProperties(Directory.GetParent(prjPathTextbx.Text).FullName, relationDataGridView.CurrentRow.Cells[0].Value.ToString(), relationDataGridView.CurrentRow.Cells[1].Value.ToString());
+                if (hasYearCheckBox.Checked)
+                {
+                    props.Insert(0, new Property() { Name = "Year" });
+                }
                 (relationDataGridView.CurrentRow.Cells[2] as DataGridViewComboBoxCell).Value = null;
                 (relationDataGridView.CurrentRow.Cells[2] as DataGridViewComboBoxCell).DataSource = props;
                 (relationDataGridView.CurrentRow.Cells[2] as DataGridViewComboBoxCell).DisplayMember = "Name";
@@ -256,9 +261,13 @@ namespace Asp.NetDevelopHelper
         {
             if (relationDataGridView.Columns.Count == 0)
                 return;
-            (relationDataGridView.Columns[3] as DataGridViewComboBoxColumn).DataSource =
-               propertiesDataGridView.Rows.OfType<DataGridViewRow>().Where(x => x.Index != -1)
-               .Select(x => x.Cells[0].Value?.ToString()).Where(x => x != null).ToList();
+            var list = propertiesDataGridView.Rows.OfType<DataGridViewRow>().Where(x => x.Index != -1)
+              .Select(x => x.Cells[0].Value?.ToString()).Where(x => x != null).ToList();
+            if (hasYearCheckBox.Checked)
+            {
+                list.Insert(0, "Year");
+            }
+            (relationDataGridView.Columns[3] as DataGridViewComboBoxColumn).DataSource = list;
 
         }
     }

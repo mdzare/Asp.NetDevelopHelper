@@ -477,6 +477,7 @@ namespace ArvinERP.API.Controllers.{data.Schema}
             {
                 result.Add($"<data name=\"{data.Table}_{item.Name}\" xml:space=\"preserve\">\r\n    <value>{item.Value}</value>\r\n  </data>\r\n");
             }
+            result.Add($"<data name=\"{data.Table}\" xml:space=\"preserve\">\r\n    <value>{data.TableCaption}</value>\r\n  </data>\r\n");
             return result;
         }
         public List<string> GetDesignerResources()
@@ -495,6 +496,17 @@ namespace ArvinERP.API.Controllers.{data.Schema}
         }}
     ");
             }
+
+            result.Add(@$"
+        /// <summary>
+        ///   Looks up a localized string similar to {data.TableCaption}.
+        /// </summary>
+        public static string {data.Table} {{
+            get {{
+                return ResourceManager.GetString(""{data.Table}"", resourceCulture);
+            }}
+        }}
+    ");
             return result;
         }
 
@@ -710,7 +722,7 @@ namespace ArvinERP.Domain.Resources {{
                         checker = $"IsDeleted_";
                     else
                         checker = $"Any(x => !x.IsDeleted_ {(data.HasYear ? "&& (instance.Year ==0 || x.Year == instance.Year)" : "")})";
-                    return alreadyHas + $@"
+                    return result + $@"
             if (instance.{data.Table}.{checker})
             {{
                 throw new InvalidOperationException(""این رکورد دارای رکوردهای وابسته در '{data.TableCaption}' می باشد.ابتدا رکوردهای وابسته را حذف کنید"");
@@ -718,14 +730,14 @@ namespace ArvinERP.Domain.Resources {{
             {(alreadyHas?"": "return base.BeforeDelete(instance);\r\n        }\r\n")}";
                     break;
                 case DeleteBahavior.Cascade:
-                    return alreadyHas + $@"       
+                    return result + $@"       
             {(x.RelationType == RelationType.One2One ? $"instance.{data.Table}.IsDeleted_= true" : "")}
             {(x.RelationType != RelationType.One2One ? $@"instance.{data.Table}.Where(x=> !x.IsDeleted_ && (instance.Year == 0 || x.Year == instance.Year)).ToList()
                 .ForEach(x=> x.IsDeleted_= true);" : "")}
             {(alreadyHas ? "" : "return base.BeforeDelete(instance);\r\n        }\r\n")}";
                     break;
                 case DeleteBahavior.SetNull:
-                    return alreadyHas + $@"
+                    return result + $@"
             {(x.RelationType == RelationType.One2One ? $"instance.{data.Table}.{x.ForeignKey}= null" : "")}
             {(x.RelationType != RelationType.One2One ? $@"instance.{data.Table}.Where(x=> !x.IsDeleted_ && (instance.Year == 0 || x.Year == instance.Year)).ToList()
                 .ForEach(x=> x.{x.ForeignKey} = null);" : "")}

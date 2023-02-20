@@ -16,7 +16,7 @@ namespace Asp.NetDevelopHelper.Model
         public string ProjectPath { get; set; }
         public bool HasYear { get; set; }
         public string YearName { get; set; }
-        public List<Property> Properties { get; set; }= new List<Property>();
+        public List<Property> Properties { get; set; } = new List<Property>();
         public List<List<string>> UniqueIndexes { get; set; } = new List<List<string>>();
         public List<Relation> Relations { get; set; } = new List<Relation>();
         public List<Resource> Resources { get; set; } = new List<Resource>();

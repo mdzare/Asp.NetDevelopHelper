@@ -61,6 +61,7 @@ namespace Asp.NetDevelopHelper.Service
             if (_model.CreateRepository)
             {
                 IO.IOService.CreateFile(_model.ProjectPath + $"\\ArvinERP.Infrastructure\\Interfaces\\{_model.Schema}\\I{_model.Table}Repository.cs", _builder.GetIRepository());
+                
                 IO.IOService.CreateFile(_model.ProjectPath + $"\\ArvinERP.Infrastructure\\Repositories\\{_model.Schema}\\{_model.Table}Repository.cs", _builder.GetRepository());
             }
 
@@ -125,10 +126,7 @@ namespace Asp.NetDevelopHelper.Service
                    // IO.IOService.InsertIntoFile(principalrepository, pricipalrepoCtorInsertIndex,$",{_model.Schema}.{_model.Table}Repository {_model.Table.ToLower()}Repo");
 
                 });
-                foreach (var item in _model.Relations.Where(x=> x.IsSoftRelation))
-                {
-
-                }
+               
             }
 
             if (_model.CreateResources)
@@ -229,7 +227,7 @@ namespace Asp.NetDevelopHelper.Service
                 IO.IOService.DeleteFile(_model.ProjectPath + $"\\ArvinERP.API\\Controllers\\{_model.Schema}\\{_model.Table}Controller.cs");
             if (_model.CreateContextDbset)
             {
-                IO.IOService.CutFromFile(_model.ProjectPath + $"\\ArvinERP.Infrastructure\\ArvinContext.cs", $"public DbSet<{_model.Table}> {_model.Table} {{ get; set; }}\n\t\t");
+                IO.IOService.CutFromFile(_model.ProjectPath + $"\\ArvinERP.Infrastructure\\ArvinContext.cs", $"public DbSet<{_model.Table}> {_model.Table} {{ get; set; }}");
             }
 
 
