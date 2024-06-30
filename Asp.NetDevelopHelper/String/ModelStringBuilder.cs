@@ -81,7 +81,8 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             {(data.KeyType == null && !data.Properties.Any(x => x.IsKey) ? "builder.HasNoKey();" : "")}
             {(data.Properties.Any(x => x.IsKey) ? "builder.HasKey(x =>" + (data.Properties.Where(x => x.IsKey).Count() > 1 ? $"new {{ {string.Join(", ", data.Properties.Where(x => x.IsKey).Select(x => $"x.{x.Name}"))} }});" : $" x.{data.Properties.FirstOrDefault(x => x.IsKey).Name});") : "")}
             {(data.Inherited ? data.HasYear ? @$"builder.Property(x => x.Year).HasColumnName(""{data.YearName}"");" : "builder.Ignore(x => x.Year);" : "")}");
-            builder.AppendLine("\nbuilder.HasQueryFilter(x=> !x.IsDeleted_);");
+            builder.Append(@"
+            builder.HasQueryFilter(x=> !x.IsDeleted_);");
 
 
             foreach (var item in data.UniqueIndexes)
