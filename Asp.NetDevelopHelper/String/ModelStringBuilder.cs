@@ -23,6 +23,8 @@ namespace Asp.NetDevelopHelper.String
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using ArvinERP.Domain.CustomAttributes;
 {(data.Relations.Count > 0 && data.Relations.Any(x => x.Schema != data.Schema) ? string.Join("", data.Relations.Select(x => $"using ArvinERP.Domain.Models.{x.Schema};\n").Distinct()) : "")}
 
 namespace ArvinERP.Domain.Models.{data.Schema}
@@ -33,18 +35,38 @@ namespace ArvinERP.Domain.Models.{data.Schema}
 
             foreach (var item in data.Properties)
             {
-                builder.Append($@"{(item.Maxlength != null ? $"\n\t\t[MaxLength({item.Maxlength})]" : "")}{(item.Minlength != null ? $"\n\t\t[MinLength({item.Minlength})]" : "")}                       
-        public {item.Type}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}");
-                if (data.Relations.Where(x=> !x.IsSoftRelation).Any(x => x.ForeignKey == item.Name && x.RelationType != RelationType.Many2Many))
+                if (data.Relations.Where(x => !x.IsSoftRelation).Any(x => x.ForeignKey == item.Name && x.RelationType != RelationType.Many2Many))
                 {
                     var rel = data.Relations.FirstOrDefault(x => x.ForeignKey == item.Name);
-                    builder.Append($"\n\t\tpublic virtual {rel.Table} {rel.Table} {{ get; set; }}");
-                }                
-            }
-                data.Relations.Where(x => !x.IsSoftRelation && x.RelationType == RelationType.Many2Many).ToList().ForEach(x =>
+                    builder.Append($"\n\t\t[ForeignKey(\"{rel.Table}\")]");
+                }
+                if (item.BasicCode != null && item.BasicCode > 0)
                 {
-                    builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table} {{ get; set; }}");
-                });           
+                    builder.Append($"\n\t\t[BasicCode({item.BasicCode})]");
+                }
+                if (item.Title)
+                {
+                    builder.Append($"\n\t\t[TableTitle]");
+                }
+                if (item.Maxlength != null && item.Maxlength.Length > 0)
+                {
+                    builder.Append($"\n\t\t[MaxLength({item.Maxlength})]");
+                }
+                if (item.Minlength != null && item.Minlength.Length>0)
+                {
+                    builder.Append($"\n\t\t[MaxLength({item.Minlength})]");
+                }
+                builder.Append($"\n\t\tpublic {item.Type}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}");
+                if (data.Relations.Where(x => !x.IsSoftRelation).Any(x => x.ForeignKey == item.Name && x.RelationType != RelationType.Many2Many))
+                {
+                    var rel = data.Relations.FirstOrDefault(x => x.ForeignKey == item.Name);
+                    builder.Append($"\n\t\tpublic virtual {rel.Table}{(!item.Required ? "?" : "")} {rel.Table} {{ get; set; }}");
+                }
+            }
+            data.Relations.Where(x => !x.IsSoftRelation && x.RelationType == RelationType.Many2Many).ToList().ForEach(x =>
+            {
+                builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table} {{ get; set; }}");
+            });
 
 
             builder.Append($@"
@@ -59,12 +81,18 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             {(data.KeyType == null && !data.Properties.Any(x => x.IsKey) ? "builder.HasNoKey();" : "")}
             {(data.Properties.Any(x => x.IsKey) ? "builder.HasKey(x =>" + (data.Properties.Where(x => x.IsKey).Count() > 1 ? $"new {{ {string.Join(", ", data.Properties.Where(x => x.IsKey).Select(x => $"x.{x.Name}"))} }});" : $" x.{data.Properties.FirstOrDefault(x => x.IsKey).Name});") : "")}
             {(data.Inherited ? data.HasYear ? @$"builder.Property(x => x.Year).HasColumnName(""{data.YearName}"");" : "builder.Ignore(x => x.Year);" : "")}");
+            builder.AppendLine("\nbuilder.HasQueryFilter(x=> !x.IsDeleted_);");
+
+
             foreach (var item in data.UniqueIndexes)
             {
+                var notReq = data.Properties.Where(x => item.Contains(x.Name) && !x.Required)
+                    .Select(x => $" and [{x.Name}] is not null").ToList();
+
                 builder.Append(@$"
             builder.HasIndex(i => {(item.Count > 1 ? $"new {{ {string.Join(",", item.Select(x => $"i.{x}"))}}})" : $"i.{item.FirstOrDefault()})")}
-               .HasDatabaseName(""UK_{string.Join('_', item)}"")
-               .HasFilter(""[IsDeleted_]= 0"")
+               .HasDatabaseName(""UK_{data.Table}_{string.Join('_', item)}"")
+               .HasFilter(""[IsDeleted_]= 0 {(notReq.Count> 0 ? string.Join("", notReq) :"")}"")
                .IsUnique();");
             }
             foreach (var item in data.Properties.Where(x => x.HasIndex))
@@ -73,7 +101,7 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             builder.HasIndex(i => i.{item.Name})
                .HasDatabaseName(""IX_{data.Table}_{item.Name}"");");
             }
-            foreach (var item in data.Relations.Where(x=> !x.IsSoftRelation))
+            foreach (var item in data.Relations.Where(x => !x.IsSoftRelation))
             {
                 switch (item.RelationType)
                 {
@@ -82,7 +110,7 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             builder.HasOne(x => x.{item.Table})
                 .WithMany(x => x.{data.Table})                
                 .HasForeignKey(x => x.{item.ForeignKey}){(item.PrincipalKey.ToLower() != "id" ? $".HasPrincipalKey(x=> x.{item.PrincipalKey})\n" : "")}                             
-                .HasConstraintName(""FK_{item.Table}_{data.Table}""){(item.DeleteBahavior != DeleteBahavior.SetNull ? ".IsRequired()" : "")}               
+                .HasConstraintName(""FK_{item.Table}_{data.Table}"")               
                 .OnDelete(DeleteBehavior.{item.DeleteBahavior});");
                         break;
 
@@ -91,7 +119,7 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             builder.HasOne(x => x.{item.Table})
                 .WithOne(x => x.{data.Table})                  
                 .HasForeignKey<{data.Table}>(x => x.{item.ForeignKey}){(item.PrincipalKey != "Id" ? $".HasPrincipalKey<{item.Table}>(x=> x.{item.PrincipalKey})\n" : "")}                              
-                .HasConstraintName(""FK_{item.Table}_{data.Table}""){(item.DeleteBahavior != DeleteBahavior.SetNull ? ".IsRequired()" : "")}  
+                .HasConstraintName(""FK_{item.Table}_{data.Table}"")
                 .OnDelete(DeleteBehavior.{item.DeleteBahavior});");
                         break;
 
@@ -189,6 +217,7 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             StringBuilder builder = new StringBuilder(
                  $@"
 using System.ComponentModel.DataAnnotations;
+using ArvinERP.Domain.CustomAttributes;
 
 namespace ArvinERP.Domain.DTOs.{data.Schema}
 {{
@@ -205,12 +234,18 @@ namespace ArvinERP.Domain.DTOs.{data.Schema}
             foreach (var item in data.Properties)
             {
                 builder.Append($"\n\t\t[Display(Name = nameof(Resources.{data.Schema}.{data.Table}_{item.Name}), ResourceType = typeof(Resources.{data.Schema}))]\n");
-                if (item.Maxlength != null)
+                if (item.Maxlength != null && item.Minlength == null && item.Maxlength.Length>0)
                     builder.Append($"\t\t[MaxLength(length: {item.Maxlength}, ErrorMessageResourceName = nameof(Resources.Shared.MaxLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
-                if (item.Minlength != null)
+                if (item.Minlength != null && item.Maxlength == null && item.Minlength.Length > 0)
                     builder.Append($"\t\t[MinLength(length: {item.Minlength}, ErrorMessageResourceName = nameof(Resources.Shared.MinLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
-                if (item.Regex != null)
+                if (item.Minlength != null && item.Maxlength != null)
+                    builder.Append($"\t\t[StringLength(maximumLength: {item.Maxlength}, MinimumLength = {item.Minlength}, ErrorMessageResourceName = nameof(Resources.Shared.StringLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
+                if (item.Regex != null && item.Regex.Length>0)
                     builder.Append($"\t\t[RegularExpression(@\"{item.Regex}\", ErrorMessageResourceName = nameof(Resources.Shared.FormatError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
+                if (item.Type == "string" && item.Name.ToLower().Contains("date") && item.Maxlength != null && item.Maxlength == "10")
+                    builder.Append($"\t\t[ShamsiDate(ErrorMessageResourceName = nameof(Resources.Shared.FormatError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
+                if (item.Type == "string" && item.Name.ToLower().Contains("national_code") && item.Maxlength != null && item.Maxlength == "10")
+                    builder.Append($"\t\t[NationalCode(ErrorMessageResourceName = nameof(Resources.Shared.National_Code_Error), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
                 if (item.Required)
                     builder.Append($"\t\t[Required(ErrorMessageResourceName = nameof(Resources.Shared.RequiredError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
                 builder.Append($"\t\tpublic {item.Type}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}\n");
@@ -248,8 +283,9 @@ namespace ArvinERP.Domain.ViewModels.{data.Schema}
             }
             foreach (var item in data.Properties)
             {
+                var isNav = item.BasicCode != null || data.Relations.Any(r => r.ForeignKey == item.Name);
                 builder.Append($"\n\t\t[Display(Name = nameof(Resources.{data.Schema}.{data.Table}_{item.Name}), ResourceType = typeof(Resources.{data.Schema}))]\n");
-                builder.Append($"\t\tpublic {item.Type}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}");
+                builder.Append($"\t\tpublic {(isNav ? "string" :item.Type)}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}");
             }
 
             builder.Append($@"
@@ -331,14 +367,14 @@ namespace ArvinERP.Infrastructure.Repositories.{data.Schema}
         {
             var princtables = data.Relations.Where(x => x.IsSoftRelation).Select(x => x.Table).Distinct().ToList();
             var pincRepos = princtables.Select(x => $",{x}Repository {x.ToLower()}Repo").ToList();
-           var overrides = princtables.Select(p =>             
-                $@"
+            var overrides = princtables.Select(p =>
+                 $@"
             if({p.ToLower()}Repo.GetQueryable(x=> {string.Join(" && ", data.Relations.Where(x => x.IsSoftRelation && x.Table == p).Select(s => $"x.{s.PrincipalKey}== instance.{s.ForeignKey}"))}).Count()==0)
             {{
                 throw new InvalidOperationException(""کد وارد شده برای '{{0}}' صحیح نمی باشد"");
             }}"
-            );
-            
+             );
+
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
 using ArvinERP.Domain.Models.{data.Schema};
@@ -421,7 +457,7 @@ namespace ArvinERP.Application.Services.{data.Schema}
 {{
     public class {data.Table}Service : {(data.Inherited ? $"Base.BaseService<{data.Table}, {data.Table}Dto, {data.Table}ViewModel, {data.KeyType}>, " : "")}I{data.Table}Service
     {{
-        public {data.Table}Service(I{data.Table}Repository repository, IMapper mapper) {(data.Inherited ? ": base(repository, mapper)" : "")}
+        public {data.Table}Service(I{data.Table}Repository repository {(data.CreateMapping ? ", IMapper mapper":"")}) {(data.Inherited ? $": base(repository{(data.CreateMapping ? ", mapper" : "")})" : "")}
         {{
             
         }}
@@ -448,7 +484,7 @@ namespace ArvinERP.API.Controllers.{data.Schema}
 {{
     [Route(""api/{data.Schema}/[controller]"")]
     [ApiController]
-    [Controllers(""{data.Schema}"", ""{data.Table}"", ""{data.TableCaption}"", 0)]
+    [ControllerInfo(""{data.TableCaption}"", 0)]
     public class {data.Table}Controller {(data.Inherited ? $": Base.BaseController<{data.Table}, {data.Table}Dto, {data.Table}ViewModel, {data.KeyType}>" : "")}
     {{
         private readonly I{data.Table}Service _service; 
@@ -457,12 +493,7 @@ namespace ArvinERP.API.Controllers.{data.Schema}
             _service = service;
         }}
 
-         {(data.Inherited && !data.HasYear ? @"
-        [NonAction]
-        public override Task<ActionResult> IndexByYear(int year)
-        {
-            return base.IndexByYear(year);
-        }" : "")}
+        
     }}
 }}
                             ");
@@ -708,7 +739,7 @@ namespace ArvinERP.Domain.Resources {{
             return builder.ToString();
         }
 
-        public string GetDeleteOverride(string principal, bool alreadyHas= false)
+        public string GetDeleteOverride(string principal, bool alreadyHas = false)
         {
             var x = data.Relations.FirstOrDefault(x => x.Table == principal);
             var checker = "";
@@ -727,7 +758,7 @@ namespace ArvinERP.Domain.Resources {{
             {{
                 throw new InvalidOperationException(""این رکورد دارای رکوردهای وابسته در '{data.TableCaption}' می باشد.ابتدا رکوردهای وابسته را حذف کنید"");
             }}
-            {(alreadyHas?"": "return base.BeforeDelete(instance);\r\n        }\r\n")}";
+            {(alreadyHas ? "" : "return base.BeforeDelete(instance);\r\n        }\r\n")}";
                     break;
                 case DeleteBahavior.Cascade:
                     return result + $@"       
@@ -750,6 +781,6 @@ namespace ArvinERP.Domain.Resources {{
             return "";
         }
 
-       
+
     }
 }

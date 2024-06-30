@@ -22,17 +22,20 @@ namespace Asp.NetDevelopHelper.Service
 
         public static List<Property> GetProperties(string path, string schema, string table)
         {
+           
             path = path + $"\\ArvinERP.Domain\\Models\\{schema}\\{table}.cs";
             var properties = new List<Property>();
             var file = IO.IOService.ReadFile(path);
             var index = file.IndexOf("public class") + 5;
-            var lastIndex = file.LastIndexOf("set; }");
+            var endofClass = file.IndexOf("public class", index) ;
+
             while (index >= 0)
             {
-                index = file.IndexOf("public", index) + 7;
-                var endindex = file.IndexOf("{ get;", index) - 1;
-                if (index == -1 || endindex == -2)
+                index = file.IndexOf("public", index);
+                if (index == -1  || index == endofClass)
                     break;
+                var endindex = file.IndexOf("{ get;", index) - 1;
+                index += 7;
                 var result = file.Substring(index, endindex - index).Replace("  ", " ");
                 properties.Add(new Property() { Name = result.Split(" ").Last(), Type = result.Split(" ").First() });
             }
@@ -103,7 +106,7 @@ namespace Asp.NetDevelopHelper.Service
                     {
                         pricipalrepoInsertIndex = IO.IOService.FindIndex(principalrepository, "{", alreadyhasIndex) + 1;
                     }
-                    IO.IOService.InsertIntoFile(principalrepository, pricipalrepoInsertIndex, _builder.GetDeleteOverride(item.Table, alreadyhasIndex > 0));
+                  //  IO.IOService.InsertIntoFile(principalrepository, pricipalrepoInsertIndex, _builder.GetDeleteOverride(item.Table, alreadyhasIndex > 0));
                 }
 
                var princTables = _model.Relations.Where(x => x.IsSoftRelation).Select(x=> new {x.Schema,  x.Table}).Distinct().ToList();
@@ -247,7 +250,7 @@ namespace Asp.NetDevelopHelper.Service
                     IO.IOService.CutFromFile(pricipalPath, $"\n\t\tpublic virtual {(item.RelationType != RelationType.One2One ? $"ICollection<{_model.Table}>" : _model.Table)} {_model.Table} {{ get; set; }}");
                     var principalrepository = _model.ProjectPath + $"\\ArvinERP.Infrastructure\\Repositories\\{item.Schema}\\{item.Table}Repository.cs";
                     var pricipalrepoInsertIndex = IO.IOService.FindLastIndex(principalrepository, "}\r\n}");
-                    IO.IOService.CutFromFile(principalrepository, _builder.GetDeleteOverride(item.Table));
+                    //IO.IOService.CutFromFile(principalrepository, _builder.GetDeleteOverride(item.Table));
                 }
             }
             if (_model.CreateResources)

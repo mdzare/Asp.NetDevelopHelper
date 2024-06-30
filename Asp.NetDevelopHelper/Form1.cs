@@ -77,6 +77,8 @@ namespace Asp.NetDevelopHelper
                     Minlength = item.Cells[5].Value?.ToString().ReplaceLineEndings("").Trim(),
                     Regex = item.Cells[6].Value?.ToString().ReplaceLineEndings("").Trim(),
                     IsKey = bool.Parse(item.Cells[8].Value?.ToString() ?? "false"),
+                    BasicCode = item.Cells["BasicCode"].Value == null ? null : int.Parse(item.Cells["BasicCode"].Value?.ToString()),
+                    Title = bool.Parse(item.Cells["Title"].Value?.ToString() ?? "false"),
                 };
                 model.Properties.Add(property);
                 if (model.CreateResources)
@@ -92,7 +94,7 @@ namespace Asp.NetDevelopHelper
             }
 
             var uniques = propertiesDataGridView.Rows.OfType<DataGridViewRow>()
-                 .Select(x => new { name = x.Cells[0].Value?.ToString().ReplaceLineEndings(""), index = x.Cells[6].Value?.ToString() })
+                 .Select(x => new { name = x.Cells[0].Value?.ToString().ReplaceLineEndings(""), index = x.Cells["Unique"].Value?.ToString() })
                  .Where(x => x.index != null).ToList();
             if (hasYearCheckBox.Checked && yearIndexTxbx.Text != "")
             {
@@ -268,6 +270,11 @@ namespace Asp.NetDevelopHelper
                 list.Insert(0, "Year");
             }
             (relationDataGridView.Columns[3] as DataGridViewComboBoxColumn).DataSource = list;
+
+        }
+
+        private void mappingCreateCheck_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
     }

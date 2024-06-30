@@ -16,6 +16,8 @@ namespace Asp.NetDevelopHelper.Model
         public string? Regex { get; set; }
         public bool IsKey { get; set; }
         public bool HasIndex { get; set; }
+        public bool Title { get; set; }
+        public int? BasicCode { get; set; }
         public Relation Relation { get; set; }
     }
 }
