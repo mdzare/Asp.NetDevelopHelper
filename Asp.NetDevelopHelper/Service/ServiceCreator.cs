@@ -49,6 +49,10 @@ namespace Asp.NetDevelopHelper.Service
         {
             return IO.IOService.GetFiles(path + $"\\ArvinERP.Domain\\Models\\{schema}");
         }
+        public static List<string> GetMigrations(string path)
+        {
+            return IO.IOService.GetFiles(path + $"\\ArvinERP.Infrastructure\\Migrations");
+        }
         public async void CreateArvinService()
         {
             if (_model.CreateModel)

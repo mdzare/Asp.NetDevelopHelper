@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             prjPathTextbx = new TextBox();
             openPrjPathBtn = new Button();
             label1 = new Label();
@@ -37,6 +37,7 @@
             tableTxbx = new TextBox();
             label3 = new Label();
             topPanel = new Panel();
+            schemaChanger = new Button();
             InheretedCheckBox = new CheckBox();
             schemaComboBox = new ComboBox();
             keyTypeCombo = new ComboBox();
@@ -150,7 +151,7 @@
             // 
             executeBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             executeBtn.BackColor = Color.Lime;
-            executeBtn.Location = new Point(104, 9);
+            executeBtn.Location = new Point(292, 14);
             executeBtn.Name = "executeBtn";
             executeBtn.Size = new Size(74, 29);
             executeBtn.TabIndex = 1;
@@ -190,6 +191,7 @@
             // 
             // topPanel
             // 
+            topPanel.Controls.Add(schemaChanger);
             topPanel.Controls.Add(InheretedCheckBox);
             topPanel.Controls.Add(schemaComboBox);
             topPanel.Controls.Add(keyTypeCombo);
@@ -213,6 +215,17 @@
             topPanel.Name = "topPanel";
             topPanel.Size = new Size(1248, 124);
             topPanel.TabIndex = 3;
+            // 
+            // schemaChanger
+            // 
+            schemaChanger.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            schemaChanger.Location = new Point(12, 9);
+            schemaChanger.Name = "schemaChanger";
+            schemaChanger.Size = new Size(100, 29);
+            schemaChanger.TabIndex = 8;
+            schemaChanger.Text = "تغییر اسکیما";
+            schemaChanger.UseVisualStyleBackColor = true;
+            schemaChanger.Click += schemaChanger_Click;
             // 
             // InheretedCheckBox
             // 
@@ -320,7 +333,7 @@
             undoBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             undoBtn.BackColor = Color.Red;
             undoBtn.ForeColor = SystemColors.Info;
-            undoBtn.Location = new Point(104, 56);
+            undoBtn.Location = new Point(212, 14);
             undoBtn.Name = "undoBtn";
             undoBtn.Size = new Size(74, 29);
             undoBtn.TabIndex = 1;
@@ -377,8 +390,8 @@
             // Schema
             // 
             Schema.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Schema.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Schema.DefaultCellStyle = dataGridViewCellStyle1;
             Schema.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
             Schema.Frozen = true;
             Schema.HeaderText = "Schema";
@@ -1039,5 +1052,6 @@
         private DataGridViewCheckBoxColumn Index;
         private DataGridViewTextBoxColumn BasicCode;
         private DataGridViewCheckBoxColumn Title;
+        private Button schemaChanger;
     }
 }

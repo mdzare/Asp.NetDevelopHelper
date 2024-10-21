@@ -49,6 +49,34 @@ namespace Asp.NetDevelopHelper.IO
             File.Delete(path);
         }
 
+        public static void MoveFile(string path, string newPath)
+        {
+            if (!File.Exists(path))
+                throw new Exception($"فایل {path} از قبل وجود ندارد");
+            File.Move(path, newPath);
+        }
+
+        public static void ReplaceInFile(string path, string content, string newContent)
+        {
+            if (!File.Exists(path))
+                throw new Exception($"فایل {path} وجود ندارد");
+            var file = File.ReadAllText(path);
+            File.WriteAllText(path, file.Replace(content, newContent));
+        }
+
+        public static string ReplaceInFile(string path, Dictionary<string, string> replaces, bool overwrite = true)
+        {
+            if (!File.Exists(path))
+                throw new Exception($"فایل {path} وجود ندارد");
+            var file = File.ReadAllText(path);
+            foreach (var kvp in replaces)
+            {
+                file = file.Replace(kvp.Key, kvp.Value);
+            }
+            if (overwrite)
+                File.WriteAllText(path, file);
+            return file.ToString();
+        }
         public static void CutFromFile(string path, string content)
         {
 
@@ -88,10 +116,10 @@ namespace Asp.NetDevelopHelper.IO
             if (!File.Exists(path))
                 throw new Exception($"فایل {path} وجود ندارد");
             var file = File.ReadAllText(path);
-            int result=-1;
+            int result = -1;
             while (true)
             {
-               var index=  file.IndexOf(searchText,result+1);
+                var index = file.IndexOf(searchText, result + 1);
                 if (index != -1 && (index <= before || before == -1))
                     result = index;
                 else break;
@@ -99,11 +127,11 @@ namespace Asp.NetDevelopHelper.IO
             return result;
         }
 
-        public static List<string> GetDirectories (string path , bool fullPath =false)
+        public static List<string> GetDirectories(string path, bool fullPath = false)
         {
             if (!Directory.Exists(path))
                 throw new Exception($"مسیر {path} وجود ندارد");
-            return  Directory.GetDirectories(path).Select(x=> fullPath ? x: Path.GetFileNameWithoutExtension(x)).ToList();
+            return Directory.GetDirectories(path).Select(x => fullPath ? x : Path.GetFileNameWithoutExtension(x)).ToList();
         }
 
         public static List<string> GetFiles(string path, bool fullPath = false)

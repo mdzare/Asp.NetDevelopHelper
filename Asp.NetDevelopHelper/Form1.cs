@@ -71,7 +71,7 @@ namespace Asp.NetDevelopHelper
                 Property property = new Property()
                 {
                     Name = item.Cells[0].Value.ToString().ReplaceLineEndings("").Trim(),
-                    Type = item.Cells[2].Value?.ToString().ToLower().ReplaceLineEndings("").Trim(),
+                    Type = item.Cells[2].Value?.ToString().ReplaceLineEndings("").Trim(),
                     Required = bool.Parse(item.Cells[3].Value?.ToString() ?? "false"),
                     Maxlength = item.Cells[4].Value?.ToString().ReplaceLineEndings("").Trim(),
                     Minlength = item.Cells[5].Value?.ToString().ReplaceLineEndings("").Trim(),
@@ -276,6 +276,13 @@ namespace Asp.NetDevelopHelper
         private void mappingCreateCheck_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void schemaChanger_Click(object sender, EventArgs e)
+        {
+            var form = new SchemaChanger();
+            form.ProjectPath = Directory.GetParent(prjPathTextbx.Text).FullName;
+            form.ShowDialog();
         }
     }
 }

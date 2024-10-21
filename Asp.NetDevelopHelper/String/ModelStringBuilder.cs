@@ -65,7 +65,10 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             }
             data.Relations.Where(x => !x.IsSoftRelation && x.RelationType == RelationType.Many2Many).ToList().ForEach(x =>
             {
-                builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table} {{ get; set; }}");
+                builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table}_List {{ get; set; }}");
+                
+                builder.Append($"\n\t\t[SkipProp(ManyType.Left, \"Code_c_Js\")]");
+                builder.Append($"\n\t\tpublic virtual ICollection<Many2ManyType> {x.Table}_SkipProp {{ get; set; }}");
             });
 
 
@@ -125,6 +128,20 @@ namespace ArvinERP.Domain.Models.{data.Schema}
                         break;
 
                     case RelationType.Many2Many:
+                        builder.Append($@"
+            builder.HasMany(x => x.{item.Table}_List)
+               .WithMany(x => x.{data.Table}_List)
+               .UsingEntity<Many2ManyType>(""{item.Table}_{data.Table}"",
+                 l => l.HasOne<{item.Table}>().WithMany(x => x.{data.Table}_SkipProp).HasForeignKey(x => x.LeftId),
+                 r => r.HasOne<{data.Table}>().WithMany(x => x.{item.Table}_SkipProp).HasForeignKey(x => x.RightId),
+                 j =>
+                 {{
+                     j.ToTable(""{item.Table}_{data.Table}"", ""{item.Schema}"").HasKey(x => new {{ x.LeftId, x.RightId }}).HasName(""PK_{item.Table}_{data.Table}"");
+                     j.Property(x => x.LeftId).HasColumnName(""{item.Table}Id"");
+                     j.Property(x => x.RightId).HasColumnName(""{data.Table}Id"");
+                 }}
+                 );");
+
                         builder.Append($@"
              builder.HasMany(x => x.{item.Table})
                 .WithMany(x => x.{data.Table})
