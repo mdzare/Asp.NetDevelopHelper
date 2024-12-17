@@ -29,6 +29,9 @@ using ArvinERP.Domain.CustomAttributes;
 
 namespace ArvinERP.Domain.Models.{data.Schema}
 {{
+    /// <summary>
+    /// {data.TableCaption}
+    /// </summary>
     public class {data.Table} {(data.Inherited ? $":ObjectModel<{data.KeyType}>" : "")}
     {{"
                                                         );
