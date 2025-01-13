@@ -325,7 +325,7 @@ namespace ArvinERP.Domain.ViewModels.{data.Schema}
 using ArvinERP.Domain.DTOs.{data.Schema};
 using ArvinERP.Domain.Models.{data.Schema};
 using ArvinERP.Domain.ViewModels.{data.Schema};
-using AutoMapper;
+{(data.CreateMapping ? "using AutoMapper;":"")}
 
 namespace ArvinERP.Domain.Mapping.{data.Schema}
 {{
@@ -471,8 +471,7 @@ using ArvinERP.Domain.DTOs.{data.Schema};
 using ArvinERP.Domain.Models.{data.Schema};
 using ArvinERP.Domain.ViewModels.{data.Schema};
 using ArvinERP.Infrastructure.Interfaces.{data.Schema};
-using AutoMapper;
-
+{(data.CreateMapping ? "using AutoMapper;" : "")}
 
 namespace ArvinERP.Application.Services.{data.Schema}
 {{
