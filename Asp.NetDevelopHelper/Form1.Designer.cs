@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             prjPathTextbx = new TextBox();
             openPrjPathBtn = new Button();
             label1 = new Label();
@@ -37,6 +37,7 @@
             tableTxbx = new TextBox();
             label3 = new Label();
             topPanel = new Panel();
+            DPAPIBtn = new Button();
             schemaChanger = new Button();
             InheretedCheckBox = new CheckBox();
             schemaComboBox = new ComboBox();
@@ -191,6 +192,7 @@
             // 
             // topPanel
             // 
+            topPanel.Controls.Add(DPAPIBtn);
             topPanel.Controls.Add(schemaChanger);
             topPanel.Controls.Add(InheretedCheckBox);
             topPanel.Controls.Add(schemaComboBox);
@@ -215,6 +217,17 @@
             topPanel.Name = "topPanel";
             topPanel.Size = new Size(1248, 124);
             topPanel.TabIndex = 3;
+            // 
+            // DPAPIBtn
+            // 
+            DPAPIBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DPAPIBtn.Location = new Point(12, 47);
+            DPAPIBtn.Name = "DPAPIBtn";
+            DPAPIBtn.Size = new Size(100, 29);
+            DPAPIBtn.TabIndex = 9;
+            DPAPIBtn.Text = "Hasher";
+            DPAPIBtn.UseVisualStyleBackColor = true;
+            DPAPIBtn.Click += DPAPIBtn_Click;
             // 
             // schemaChanger
             // 
@@ -390,8 +403,8 @@
             // Schema
             // 
             Schema.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Schema.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Schema.DefaultCellStyle = dataGridViewCellStyle2;
             Schema.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
             Schema.Frozen = true;
             Schema.HeaderText = "Schema";
@@ -1053,5 +1066,6 @@
         private DataGridViewTextBoxColumn BasicCode;
         private DataGridViewCheckBoxColumn Title;
         private Button schemaChanger;
+        private Button DPAPIBtn;
     }
 }

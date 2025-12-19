@@ -35,7 +35,10 @@ namespace ArvinERP.Domain.Models.{data.Schema}
     public class {data.Table} {(data.Inherited ? $":ObjectModel<{data.KeyType}>" : "")}
     {{"
                                                         );
-
+            if (!data.HasYear)
+            {
+                builder.Append($"\n\t\t[NotMapped]\r\n\t\tpublic int Year {{ get; set; }}\n");
+            }
             foreach (var item in data.Properties)
             {
                 if (data.Relations.Where(x => !x.IsSoftRelation).Any(x => x.ForeignKey == item.Name && x.RelationType != RelationType.Many2Many))

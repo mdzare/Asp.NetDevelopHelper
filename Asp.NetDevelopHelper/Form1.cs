@@ -284,5 +284,11 @@ namespace Asp.NetDevelopHelper
             form.ProjectPath = Directory.GetParent(prjPathTextbx.Text).FullName;
             form.ShowDialog();
         }
+
+        private void DPAPIBtn_Click(object sender, EventArgs e)
+        {
+            var form = new DPAPI_Tool();
+            form.ShowDialog();
+        }
     }
 }
