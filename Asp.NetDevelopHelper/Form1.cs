@@ -284,5 +284,24 @@ namespace Asp.NetDevelopHelper
             form.ProjectPath = Directory.GetParent(prjPathTextbx.Text).FullName;
             form.ShowDialog();
         }
+
+        private void opnCoreWebPathBtn_Click(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                prjPathTextbx.Text = dialog.SelectedPath;
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                contextPathTxtBox.Text = dialog.SelectedPath;
+            }
+        }
     }
 }
