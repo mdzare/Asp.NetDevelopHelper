@@ -232,7 +232,6 @@
             DPAPIBtn.TabIndex = 9;
             DPAPIBtn.Text = "Hasher";
             DPAPIBtn.UseVisualStyleBackColor = true;
-            DPAPIBtn.Click += DPAPIBtn_Click;
             // 
             // schemaChanger
             // 
