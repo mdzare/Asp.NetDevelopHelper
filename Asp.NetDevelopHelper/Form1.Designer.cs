@@ -37,6 +37,7 @@
             tableTxbx = new TextBox();
             label3 = new Label();
             topPanel = new Panel();
+            DPAPIBtn = new Button();
             schemaChanger = new Button();
             InheretedCheckBox = new CheckBox();
             schemaComboBox = new ComboBox();
@@ -195,6 +196,7 @@
             // 
             // topPanel
             // 
+            topPanel.Controls.Add(DPAPIBtn);
             topPanel.Controls.Add(schemaChanger);
             topPanel.Controls.Add(InheretedCheckBox);
             topPanel.Controls.Add(schemaComboBox);
@@ -220,6 +222,17 @@
             topPanel.Name = "topPanel";
             topPanel.Size = new Size(1092, 93);
             topPanel.TabIndex = 3;
+            // 
+            // DPAPIBtn
+            // 
+            DPAPIBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DPAPIBtn.Location = new Point(12, 47);
+            DPAPIBtn.Name = "DPAPIBtn";
+            DPAPIBtn.Size = new Size(100, 29);
+            DPAPIBtn.TabIndex = 9;
+            DPAPIBtn.Text = "Hasher";
+            DPAPIBtn.UseVisualStyleBackColor = true;
+            DPAPIBtn.Click += DPAPIBtn_Click;
             // 
             // schemaChanger
             // 
@@ -1100,5 +1113,6 @@
         private DataGridViewTextBoxColumn BasicCode;
         private DataGridViewCheckBoxColumn Title;
         private Button schemaChanger;
+        private Button DPAPIBtn;
     }
 }
