@@ -41,6 +41,11 @@ namespace {NameSpaces.Domain}.Models.{data.Schema}
             }
             foreach (var item in data.Properties)
             {
+                //ارتباط چند به چند فارین کی نداره
+                if (data.Relations.Any(a => a.RelationType == RelationType.Many2Many && a.ForeignKey.Equals(item.Name, StringComparison.OrdinalIgnoreCase)))
+                    continue;
+
+
                 if (data.Relations.Where(x => !x.IsSoftRelation).Any(x => x.ForeignKey == item.Name && x.RelationType != RelationType.Many2Many))
                 {
                     var rel = data.Relations.FirstOrDefault(x => x.ForeignKey == item.Name);
@@ -73,7 +78,7 @@ namespace {NameSpaces.Domain}.Models.{data.Schema}
             {
                 builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table}_List {{ get; set; }}");
                 
-                builder.Append($"\n\t\t[SkipProp(ManyType.Left, \"Code_c_Js\")]");
+                builder.Append($"\n\t\t[SkipProp(ManyType.Left, \"{x.ForeignKey}\")]");
                 builder.Append($"\n\t\tpublic virtual ICollection<Many2ManyType> {x.Table}_SkipProp {{ get; set; }}");
             });
 
@@ -148,26 +153,26 @@ namespace {NameSpaces.Domain}.Models.{data.Schema}
                  }}
                  );");
 
-                        builder.Append($@"
-             builder.HasMany(x => x.{item.Table})
-                .WithMany(x => x.{data.Table})
-                .UsingEntity<Dictionary<string, object>>(                
-                l => l.HasOne<{item.Table}>().WithMany()
-                        .HasForeignKey(""{item.Table}_Key"")
-                        .HasConstraintName(""FK_{item.Table}_{data.Table}"")
-                        .IsRequired()
-                        .OnDelete(DeleteBehavior.Cascade),
-                r => r.HasOne<{data.Table}>().WithMany()
-                        .HasForeignKey(""{data.Table}_Key"")
-                        .HasConstraintName(""FK_{data.Table}_{data.Table}"")
-                        .IsRequired()
-                        .OnDelete(DeleteBehavior.Cascade),
-                j =>
-                {{
-                    j.HasKey(""{item.Table}_Key"", ""{data.Table}_Key"");
-                    j.HasIndex(new[] {{ ""{item.Table}_Key"" }}, ""IX_{item.Table}{data.Table}_{item.Table}_{item.PrincipalKey}"");
-                    j.ToTable(""{item.Table}{data.Table}"",""{item.Schema}"");
-                }});");
+             //           builder.Append($@"
+             //builder.HasMany(x => x.{item.Table})
+             //   .WithMany(x => x.{data.Table})
+             //   .UsingEntity<Dictionary<string, object>>(                
+             //   l => l.HasOne<{item.Table}>().WithMany()
+             //           .HasForeignKey(""{item.Table}_Key"")
+             //           .HasConstraintName(""FK_{item.Table}_{data.Table}"")
+             //           .IsRequired()
+             //           .OnDelete(DeleteBehavior.Cascade),
+             //   r => r.HasOne<{data.Table}>().WithMany()
+             //           .HasForeignKey(""{data.Table}_Key"")
+             //           .HasConstraintName(""FK_{data.Table}_{data.Table}"")
+             //           .IsRequired()
+             //           .OnDelete(DeleteBehavior.Cascade),
+             //   j =>
+             //   {{
+             //       j.HasKey(""{item.Table}_Key"", ""{data.Table}_Key"");
+             //       j.HasIndex(new[] {{ ""{item.Table}_Key"" }}, ""IX_{item.Table}{data.Table}_{item.Table}_{item.PrincipalKey}"");
+             //       j.ToTable(""{item.Table}{data.Table}"",""{item.Schema}"");
+             //   }});");
                         break;
 
                     default:
@@ -257,6 +262,8 @@ namespace {NameSpaces.Domain}.DTOs.{data.Schema}
 
             foreach (var item in data.Properties)
             {
+                var isMany = data.Relations.Any(a => a.RelationType == RelationType.Many2Many && a.ForeignKey.Equals(item.Name));
+
                 builder.Append($"\n\t\t[Display(Name = nameof(Resources.{data.Schema}.{data.Table}_{item.Name}), ResourceType = typeof(Resources.{data.Schema}))]\n");
                 if (item.Maxlength != null && item.Minlength == null && item.Maxlength.Length>0)
                     builder.Append($"\t\t[MaxLength(length: {item.Maxlength}, ErrorMessageResourceName = nameof(Resources.Shared.MaxLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
@@ -272,7 +279,7 @@ namespace {NameSpaces.Domain}.DTOs.{data.Schema}
                     builder.Append($"\t\t[NationalCode(ErrorMessageResourceName = nameof(Resources.Shared.National_Code_Error), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
                 if (item.Required)
                     builder.Append($"\t\t[Required(ErrorMessageResourceName = nameof(Resources.Shared.RequiredError), ErrorMessageResourceType = typeof(Resources.Shared))]\n");
-                builder.Append($"\t\tpublic {item.Type}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}\n");
+                builder.Append($"\t\tpublic {item.Type}{(isMany?"[]":"")}{(!item.Required ? "?" : "")} {item.Name} {{ get; set; }}\n");
 
             }
             builder.Append($@"
