@@ -24,10 +24,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ArvinERP.Domain.CustomAttributes;
-{(data.Relations.Count > 0 && data.Relations.Any(x => x.Schema != data.Schema) ? string.Join("", data.Relations.Select(x => $"using ArvinERP.Domain.Models.{x.Schema};\n").Distinct()) : "")}
+using {NameSpaces.Domain}.CustomAttributes;
+{(data.Relations.Count > 0 && data.Relations.Any(x => x.Schema != data.Schema) ? string.Join("", data.Relations.Select(x => $"using {NameSpaces.Domain}.Models.{x.Schema};\n").Distinct()) : "")}
 
-namespace ArvinERP.Domain.Models.{data.Schema}
+namespace {NameSpaces.Domain}.Models.{data.Schema}
 {{
     /// <summary>
     /// {data.TableCaption}
@@ -196,10 +196,10 @@ namespace ArvinERP.Domain.Models.{data.Schema}
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using ArvinERP.Domain.Models.{item.Table};
-using ArvinERP.Domain.Models.{data.Table};
+using {NameSpaces.Domain}.Models.{item.Table};
+using {NameSpaces.Domain}.Models.{data.Table};
 
-namespace ArvinERP.Domain.Models.{data.Schema}
+namespace {NameSpaces.Domain}.Models.{data.Schema}
 {{
     public class {item.Table}{data.Table}
     {{
@@ -241,9 +241,9 @@ namespace ArvinERP.Domain.Models.{data.Schema}
             StringBuilder builder = new StringBuilder(
                  $@"
 using System.ComponentModel.DataAnnotations;
-using ArvinERP.Domain.CustomAttributes;
+using {NameSpaces.Domain}.CustomAttributes;
 
-namespace ArvinERP.Domain.DTOs.{data.Schema}
+namespace {NameSpaces.Domain}.DTOs.{data.Schema}
 {{
     public class {data.Table}Dto {(data.Inherited ? $":Base.BaseDto<{data.KeyType}>" : "")}
     {{");
@@ -290,10 +290,10 @@ namespace ArvinERP.Domain.DTOs.{data.Schema}
         {
             StringBuilder builder = new StringBuilder(
                  $@"
-using ArvinERP.Domain.ViewModels.Base;
+using {NameSpaces.Domain}.ViewModels.Base;
 using System.ComponentModel.DataAnnotations;
 
-namespace ArvinERP.Domain.ViewModels.{data.Schema}
+namespace {NameSpaces.Domain}.ViewModels.{data.Schema}
 {{
     public class {data.Table}ViewModel {(data.Inherited ? $":BaseViewModel<{data.KeyType}>" : "")}
     {{"
@@ -325,12 +325,12 @@ namespace ArvinERP.Domain.ViewModels.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERP.Domain.DTOs.{data.Schema};
-using ArvinERP.Domain.Models.{data.Schema};
-using ArvinERP.Domain.ViewModels.{data.Schema};
+using {NameSpaces.Domain}.DTOs.{data.Schema};
+using {NameSpaces.Domain}.Models.{data.Schema};
+using {NameSpaces.Domain}.ViewModels.{data.Schema};
 {(data.CreateMapping ? "using AutoMapper;":"")}
 
-namespace ArvinERP.Domain.Mapping.{data.Schema}
+namespace {NameSpaces.Domain}.Mapping.{data.Schema}
 {{
     public class {data.Table}MappingProfile :Profile
     {{
@@ -350,10 +350,10 @@ namespace ArvinERP.Domain.Mapping.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERP.Domain.Models.{data.Schema};
-using ArvinERP.Infrastructure.Repositories.Base;
+using {NameSpaces.Domain}.Models.{data.Schema};
+using {NameSpaces.Infrastructure}.Repositories.Base;
 
-namespace ArvinERP.Infrastructure.Interfaces.{data.Schema}
+namespace {NameSpaces.Infrastructure}.Interfaces.{data.Schema}
 {{
     public interface I{data.Table}Repository {(data.Inherited ? $": IBaseRepository<{data.Table}, {data.KeyType}>" : "")}
     {{
@@ -368,11 +368,11 @@ namespace ArvinERP.Infrastructure.Interfaces.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERP.Domain.Models.{data.Schema};
-using ArvinERP.Infrastructure.Interfaces.{data.Schema};
-using ArvinERP.Infrastructure.Repositories.Base;
+using {NameSpaces.Domain}.Models.{data.Schema};
+using {NameSpaces.Infrastructure}.Interfaces.{data.Schema};
+using {NameSpaces.Infrastructure}.Repositories.Base;
 
-namespace ArvinERP.Infrastructure.Repositories.{data.Schema}
+namespace {NameSpaces.Infrastructure}.Repositories.{data.Schema}
 {{
     public class {data.Table}Repository :{(data.Inherited ? $" BaseRepository<{data.Table}, {data.KeyType}>," : "")} I{data.Table}Repository
     {{
@@ -401,16 +401,16 @@ namespace ArvinERP.Infrastructure.Repositories.{data.Schema}
 
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERP.Domain.Models.{data.Schema};
-using ArvinERP.Infrastructure.Interfaces.{data.Schema};
-using ArvinERP.Infrastructure.Repositories.Base;");
+using {NameSpaces.Domain}.Models.{data.Schema};
+using {NameSpaces.Infrastructure}.Interfaces.{data.Schema};
+using {NameSpaces.Infrastructure}.Repositories.Base;");
 
             foreach (var item in data.Relations.Where(x => x.IsSoftRelation))
             {
-                builder.Append($"\nusing ArvinERP.Infrastructure.Repositories.{item.Schema}");
+                builder.Append($"\nusing {NameSpaces.Infrastructure}.Repositories.{item.Schema}");
             }
             builder.Append($@"
-namespace ArvinERP.Infrastructure.Repositories.{data.Schema}
+namespace {NameSpaces.Infrastructure}.Repositories.{data.Schema}
 {{
     public class {data.Table}Repository :{(data.Inherited ? $" BaseRepository<{data.Table}, {data.KeyType}>," : "")} I{data.Table}Repository
     {{
@@ -448,12 +448,12 @@ namespace ArvinERP.Infrastructure.Repositories.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERP.Application.Services.Base;
-using ArvinERP.Domain.DTOs.{data.Schema};
-using ArvinERP.Domain.Models.{data.Schema};
-using ArvinERP.Domain.ViewModels.{data.Schema};
+using {NameSpaces.Application}.Services.Base;
+using {NameSpaces.Domain}.DTOs.{data.Schema};
+using {NameSpaces.Domain}.Models.{data.Schema};
+using {NameSpaces.Domain}.ViewModels.{data.Schema};
 
-namespace ArvinERP.Application.Interfaces.{data.Schema}
+namespace {NameSpaces.Application}.Interfaces.{data.Schema}
 {{
     public interface I{data.Table}Service {(data.Inherited ? $": IBaseService<{data.Table}, {data.Table}Dto, {data.Table}ViewModel, {data.KeyType}>" : "")}
     {{
@@ -469,14 +469,14 @@ namespace ArvinERP.Application.Interfaces.{data.Schema}
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-using ArvinERP.Application.Interfaces.{data.Schema};
-using ArvinERP.Domain.DTOs.{data.Schema};
-using ArvinERP.Domain.Models.{data.Schema};
-using ArvinERP.Domain.ViewModels.{data.Schema};
-using ArvinERP.Infrastructure.Interfaces.{data.Schema};
+using {NameSpaces.Application}.Interfaces.{data.Schema};
+using {NameSpaces.Domain}.DTOs.{data.Schema};
+using {NameSpaces.Domain}.Models.{data.Schema};
+using {NameSpaces.Domain}.ViewModels.{data.Schema};
+using {NameSpaces.Infrastructure}.Interfaces.{data.Schema};
 {(data.CreateMapping ? "using AutoMapper;" : "")}
 
-namespace ArvinERP.Application.Services.{data.Schema}
+namespace {NameSpaces.Application}.Services.{data.Schema}
 {{
     public class {data.Table}Service : {(data.Inherited ? $"Base.BaseService<{data.Table}, {data.Table}Dto, {data.Table}ViewModel, {data.KeyType}>, " : "")}I{data.Table}Service
     {{
@@ -497,13 +497,13 @@ namespace ArvinERP.Application.Services.{data.Schema}
             builder.Append(
 $@"
 using Microsoft.AspNetCore.Mvc;
-using ArvinERP.API.Attributes;
-using ArvinERP.Domain.DTOs.{data.Schema};
-using ArvinERP.Domain.Models.{data.Schema};
-using ArvinERP.Domain.ViewModels.{data.Schema};
-using ArvinERP.Application.Interfaces.{data.Schema};
+using {NameSpaces.Api}.Attributes;
+using {NameSpaces.Domain}.DTOs.{data.Schema};
+using {NameSpaces.Domain}.Models.{data.Schema};
+using {NameSpaces.Domain}.ViewModels.{data.Schema};
+using {NameSpaces.Application}.Interfaces.{data.Schema};
 
-namespace ArvinERP.API.Controllers.{data.Schema}
+namespace {NameSpaces.Api}.Controllers.{data.Schema}
 {{
     [Route(""api/{data.Schema}/[controller]"")]
     [ApiController]
@@ -704,7 +704,7 @@ namespace ArvinERP.API.Controllers.{data.Schema}
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArvinERP.Domain.Resources {{
+namespace {NameSpaces.Domain}.Resources {{
     using System;
     
     
@@ -735,7 +735,7 @@ namespace ArvinERP.Domain.Resources {{
         public static global::System.Resources.ResourceManager ResourceManager {{
             get {{
                 if (object.ReferenceEquals(resourceMan, null)) {{
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager(""ArvinERP.Domain.Resources.{data.Schema}"", typeof({data.Schema}).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager(""{NameSpaces.Domain}.Resources.{data.Schema}"", typeof({data.Schema}).Assembly);
                     resourceMan = temp;
                 }}
                 return resourceMan;

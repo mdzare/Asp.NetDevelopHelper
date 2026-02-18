@@ -1,4 +1,5 @@
-﻿using Asp.NetDevelopHelper.Service;
+﻿using Asp.NetDevelopHelper.Model;
+using Asp.NetDevelopHelper.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,7 +78,7 @@ namespace Asp.NetDevelopHelper
             var error = "";
             foreach (var item in list)
             {
-                if (!IO.IOService.FileExists(ProjectPath + $"\\ArvinERP.Domain\\Models\\{schemaComboBox.Text}\\{item}.cs"))
+                if (!IO.IOService.FileExists(ProjectPath + $"\\{NameSpaces.Domain}\\Models\\{schemaComboBox.Text}\\{item}.cs"))
                 {
                     tableListBox.Text = tableListBox.Text.Replace($"\r\n{item}\r\n", $"\r\n\r\n");
                     error += $"\r\n{item}";

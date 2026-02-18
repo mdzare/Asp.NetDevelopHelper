@@ -136,7 +136,7 @@ namespace Asp.NetDevelopHelper
         private void openPrjPathBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Project File |*.sln";
+            fileDialog.Filter = "Project File |*.sln;*.slnx";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 prjPathTextbx.Text = fileDialog.FileName;
@@ -219,6 +219,17 @@ namespace Asp.NetDevelopHelper
         private void prjPathTextbx_TextChanged(object sender, EventArgs e)
         {
             var parent = Directory.GetParent(prjPathTextbx.Text).FullName;
+           
+            var folders = Directory.GetDirectories(parent);
+            NameSpaces.Api = Path.GetFileName(folders.FirstOrDefault(x => x.EndsWith("Api", StringComparison.OrdinalIgnoreCase)));
+            NameSpaces.Application = Path.GetFileName(folders.FirstOrDefault(x => x.EndsWith("Application", StringComparison.OrdinalIgnoreCase)));
+            NameSpaces.Domain = Path.GetFileName(folders.FirstOrDefault(x => x.EndsWith("Domain", StringComparison.OrdinalIgnoreCase)));
+            NameSpaces.Infrastructure = Path.GetFileName(folders.FirstOrDefault(x => x.EndsWith("Infrastructure", StringComparison.OrdinalIgnoreCase)));
+            coreWebPathTxtBox.Text = parent + "\\" + NameSpaces.Api ;
+            appPathTtextBox.Text = parent + "\\" + NameSpaces.Application;
+            infraPathTxtBx.Text = parent + "\\" + NameSpaces.Infrastructure;
+            domainPathTxtBx.Text = parent + "\\" + NameSpaces.Domain;
+
             schemaComboBox.Items.Clear();
             try
             {
@@ -229,10 +240,6 @@ namespace Asp.NetDevelopHelper
             {
 
             }
-            coreWebPathTxtBox.Text = parent + "\\ArvinERP.API";
-            appPathTtextBox.Text = parent + "\\ArvinERP.Application";
-            infraPathTxtBx.Text = parent + "\\ArvinERP.Infrastructure";
-            domainPathTxtBx.Text = parent + "\\ArvinERP.Domain";
         }
 
         private void relationDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
