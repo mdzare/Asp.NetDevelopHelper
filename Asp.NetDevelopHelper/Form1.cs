@@ -70,7 +70,7 @@ namespace Asp.NetDevelopHelper
                     break;
                 Property property = new Property()
                 {
-                    Name = item.Cells[0].Value.ToString().ReplaceLineEndings("").Trim(),
+                    Name = item.Cells[0].Value.ToString().ReplaceLineEndings("").repl(" ","").Trim(),
                     Type = item.Cells[2].Value?.ToString().ReplaceLineEndings("").Trim(),
                     Required = bool.Parse(item.Cells[3].Value?.ToString() ?? "false"),
                     Maxlength = item.Cells[4].Value?.ToString().ReplaceLineEndings("").Trim(),

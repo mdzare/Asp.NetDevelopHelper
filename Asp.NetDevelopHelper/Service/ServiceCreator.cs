@@ -103,13 +103,13 @@ namespace Asp.NetDevelopHelper.Service
                     IO.IOService.InsertIntoFile(pricipalPath, pricipalInsertIndex, $"\n\t\tpublic virtual {(item.RelationType != RelationType.One2One ? $"ICollection<{_model.Table}>" : _model.Table)} {_model.Table} {{ get; set; }}");
                     if (item.Schema != _model.Schema)
                         IO.IOService.InsertIntoFile(pricipalPath, 0, $"using {NameSpaces.Domain}.Models.{_model.Schema};\n");
-                    var principalrepository = _model.ProjectPath + $"\\{NameSpaces.Infrastructure}\\Repositories\\{item.Schema}\\{item.Table}Repository.cs";
-                    var pricipalrepoInsertIndex = IO.IOService.FindLastIndex(principalrepository, "}\r\n}");
-                    var alreadyhasIndex = IO.IOService.FindIndex(principalrepository, $"BeforeDelete({item.Table} instance)");
-                    if (alreadyhasIndex != -1)
-                    {
-                        pricipalrepoInsertIndex = IO.IOService.FindIndex(principalrepository, "{", alreadyhasIndex) + 1;
-                    }
+                    //var principalrepository = _model.ProjectPath + $"\\{NameSpaces.Infrastructure}\\Repositories\\{item.Schema}\\{item.Table}Repository.cs";
+                    //var pricipalrepoInsertIndex = IO.IOService.FindLastIndex(principalrepository, "}\r\n}");
+                    //var alreadyhasIndex = IO.IOService.FindIndex(principalrepository, $"BeforeDelete({item.Table} instance)");
+                    //if (alreadyhasIndex != -1)
+                    //{
+                    //    pricipalrepoInsertIndex = IO.IOService.FindIndex(principalrepository, "{", alreadyhasIndex) + 1;
+                    //}
                   //  IO.IOService.InsertIntoFile(principalrepository, pricipalrepoInsertIndex, _builder.GetDeleteOverride(item.Table, alreadyhasIndex > 0));
                 }
 
