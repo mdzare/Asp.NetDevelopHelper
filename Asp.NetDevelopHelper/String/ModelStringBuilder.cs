@@ -76,10 +76,10 @@ namespace {NameSpaces.Domain}.Models.{data.Schema}
             }
             data.Relations.Where(x => !x.IsSoftRelation && x.RelationType == RelationType.Many2Many).ToList().ForEach(x =>
             {
-                builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table}_List {{ get; set; }}");
+                builder.Append($"\n\t\tpublic virtual ICollection<{x.Table}> {x.Table}_List {{ get; set; }} =[];");
                 
                 builder.Append($"\n\t\t[SkipProp(ManyType.Left, \"{x.ForeignKey}\")]");
-                builder.Append($"\n\t\tpublic virtual ICollection<Many2ManyType> {x.Table}_SkipProp {{ get; set; }}");
+                builder.Append($"\n\t\tpublic virtual ICollection<Many2ManyType> {x.Table}_SkipProp {{ get; set; }} =[];");
             });
 
 
@@ -190,57 +190,57 @@ namespace {NameSpaces.Domain}.Models.{data.Schema}
 
         }
         //قضیه اش کنسله
-        public List<string> GetMany2ManyModelClass()
-        {
-            var result = new List<string>();
-            foreach (var item in data.Relations.Where(x => x.RelationType == RelationType.Many2Many))
-            {
+//        public List<string> GetMany2ManyModelClass()
+//        {
+//            var result = new List<string>();
+//            foreach (var item in data.Relations.Where(x => x.RelationType == RelationType.Many2Many))
+//            {
 
-                StringBuilder builder = new StringBuilder(
-                    $@"
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using {NameSpaces.Domain}.Models.{item.Table};
-using {NameSpaces.Domain}.Models.{data.Table};
+//                StringBuilder builder = new StringBuilder(
+//                    $@"
+//using Microsoft.EntityFrameworkCore.Metadata.Builders;
+//using Microsoft.EntityFrameworkCore;
+//using System.ComponentModel.DataAnnotations;
+//using {NameSpaces.Domain}.Models.{item.Table};
+//using {NameSpaces.Domain}.Models.{data.Table};
 
-namespace {NameSpaces.Domain}.Models.{data.Schema}
-{{
-    public class {item.Table}{data.Table}
-    {{
-        public {data.Properties.FirstOrDefault(x => x.Name == item.ForeignKey).Type} {item.Table}_{item.PrincipalKey} {{ get; set; }}
-        public virtual {item.Table} {item.Table} {{ get; set; }}
-        public {data.Properties.FirstOrDefault(x => x.Name == item.ForeignKey).Type} {data.Table}_{item.ForeignKey} {{ get; set; }}
-        public virtual {data.Table} {data.Table} {{ get; set; }}
-    }}
+//namespace {NameSpaces.Domain}.Models.{data.Schema}
+//{{
+//    public class {item.Table}{data.Table}
+//    {{
+//        public {data.Properties.FirstOrDefault(x => x.Name == item.ForeignKey).Type} {item.Table}_{item.PrincipalKey} {{ get; set; }}
+//        public virtual {item.Table} {item.Table} {{ get; set; }}
+//        public {data.Properties.FirstOrDefault(x => x.Name == item.ForeignKey).Type} {data.Table}_{item.ForeignKey} {{ get; set; }}
+//        public virtual {data.Table} {data.Table} {{ get; set; }}
+//    }}
 
-    public class {item.Table}{data.Table}Configuration : IEntityTypeConfiguration<{item.Table}{data.Table}>
-    {{
+//    public class {item.Table}{data.Table}Configuration : IEntityTypeConfiguration<{item.Table}{data.Table}>
+//    {{
 
-        public void Configure(EntityTypeBuilder<{item.Table}{data.Table}> builder)
-        {{
-            builder.HasOne(x => x.{item.Table})
-                .WithMany(x => x.{item.Table}{data.Table})                
-                {(item.PrincipalKey != "Id" ? $".HasPrincipalKey(x=> x.{item.PrincipalKey})\n" : "")}.HasForeignKey(x => x.{item.Table}_{item.PrincipalKey})                             
-                .HasConstraintName(""FK_{item.Table}_{data.Table}"")
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+//        public void Configure(EntityTypeBuilder<{item.Table}{data.Table}> builder)
+//        {{
+//            builder.HasOne(x => x.{item.Table})
+//                .WithMany(x => x.{item.Table}{data.Table})                
+//                {(item.PrincipalKey != "Id" ? $".HasPrincipalKey(x=> x.{item.PrincipalKey})\n" : "")}.HasForeignKey(x => x.{item.Table}_{item.PrincipalKey})                             
+//                .HasConstraintName(""FK_{item.Table}_{data.Table}"")
+//                .IsRequired()
+//                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(x => x.{data.Table})
-                .WithMany(x => x.{item.Table}{data.Table}) 
-                {(item.ForeignKey != "Id" ? $".HasPrincipalKey(x=> x.{item.ForeignKey})\n" : "")}.HasForeignKey(x => x.{data.Table}_{item.ForeignKey})                             
-                .HasConstraintName(""FK_{data.Table}_{item.Table}"")
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
-        }}
-    }}
+//            builder.HasOne(x => x.{data.Table})
+//                .WithMany(x => x.{item.Table}{data.Table}) 
+//                {(item.ForeignKey != "Id" ? $".HasPrincipalKey(x=> x.{item.ForeignKey})\n" : "")}.HasForeignKey(x => x.{data.Table}_{item.ForeignKey})                             
+//                .HasConstraintName(""FK_{data.Table}_{item.Table}"")
+//                .IsRequired()
+//                .OnDelete(DeleteBehavior.Cascade);
+//        }}
+//    }}
 
-}}
-                   ");
-                result.Add(builder.ToString());
-            }
-            return result;
-        }
+//}}
+//                   ");
+//                result.Add(builder.ToString());
+//            }
+//            return result;
+//        }
         public string GetDtoClass()
         {
             StringBuilder builder = new StringBuilder(
