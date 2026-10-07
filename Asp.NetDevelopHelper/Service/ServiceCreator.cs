@@ -97,7 +97,7 @@ namespace Asp.NetDevelopHelper.Service
             {
                 foreach (var item in _model.Relations.Where(x=> !x.IsSoftRelation))
                 {
-                    var data = $"\n\t\tpublic virtual {(item.RelationType != RelationType.One2One ? $"ICollection<{_model.Table}>" : _model.Table)} {_model.Table} {{ get; set; }}" + (item.RelationType != RelationType.One2One? " =[];":"");
+                    var data = $"\n\t\tpublic virtual {(item.RelationType != RelationType.One2One ? $"ICollection<{_model.Table}>" : _model.Table)} {_model.Table} {{ get; set; }}" ;
                     if (item.RelationType == RelationType.Many2Many)
                         data += $"\n\t\tpublic virtual ICollection<Many2ManyType> {_model.Table}_SkipProp {{ get; set; }} =[];";
 
